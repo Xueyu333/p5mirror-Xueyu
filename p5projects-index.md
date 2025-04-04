@@ -1,5 +1,5 @@
 # Xueyu333 p5projects
-[169 sketches 2025-03-21T14:47:19.446Z](./downloads/gen/sketches_recent.md)
+[176 sketches 2025-04-04T13:59:44.274Z](./downloads/gen/sketches_recent.md)
 
 - [09 emotion recognition in real time 01-Qj9O7hDdn](./p5projects/09%20emotion%20recognition%20in%20real%20time%2001-Qj9O7hDdn) [[p5js](https://editor.p5js.org/Xueyu333/sketches/Qj9O7hDdn)]
 - [09 emotion recognition in real time 02 copy-2cd2Nl9vy](./p5projects/09%20emotion%20recognition%20in%20real%20time%2002%20copy-2cd2Nl9vy) [[p5js](https://editor.p5js.org/Xueyu333/sketches/2cd2Nl9vy)]
@@ -50,6 +50,7 @@
 - [Sound Mic Threshold copy-7X9XuGMF](./p5projects/Sound%20Mic%20Threshold%20copy-7X9XuGMF) [[p5js](https://editor.p5js.org/Xueyu333/sketches/-7X9XuGMF)]
 - [Sparkling address-vMcHSfTPl](./p5projects/Sparkling%20address-vMcHSfTPl) [[p5js](https://editor.p5js.org/Xueyu333/sketches/vMcHSfTPl)]
 - [Spiky dormouse-DofZSsCse](./p5projects/Spiky%20dormouse-DofZSsCse) [[p5js](https://editor.p5js.org/Xueyu333/sketches/DofZSsCse)]
+- [Twisty Squares by Ivan Rudnicki copy-gEfAGJS9D](./p5projects/Twisty%20Squares%20by%20Ivan%20Rudnicki%20copy-gEfAGJS9D) [[p5js](https://editor.p5js.org/Xueyu333/sketches/gEfAGJS9D)]
 - [W4 Re-write as a loop - I copy-0AT7EskLP](./p5projects/W4%20Re-write%20as%20a%20loop%20-%20I%20copy-0AT7EskLP) [[p5js](https://editor.p5js.org/Xueyu333/sketches/0AT7EskLP)]
 - [W4 Re-write as a loop - III copy-Ufzs1pZAd](./p5projects/W4%20Re-write%20as%20a%20loop%20-%20III%20copy-Ufzs1pZAd) [[p5js](https://editor.p5js.org/Xueyu333/sketches/Ufzs1pZAd)]
 - [WebGL Exercise 2 copy-BkkT0vP1l](./p5projects/WebGL%20Exercise%202%20copy-BkkT0vP1l) [[p5js](https://editor.p5js.org/Xueyu333/sketches/BkkT0vP1l)]
@@ -82,6 +83,8 @@
 - [how many cats copy2-H\_hSORWnp](./p5projects/how%20many%20cats%20copy2-H_hSORWnp) [[p5js](https://editor.p5js.org/Xueyu333/sketches/H_hSORWnp)]
 - [how many cats copy3-zaNR3L-Qp](./p5projects/how%20many%20cats%20copy3-zaNR3L-Qp) [[p5js](https://editor.p5js.org/Xueyu333/sketches/zaNR3L-Qp)]
 - [how many cats-2FjN9s0YC](./p5projects/how%20many%20cats-2FjN9s0YC) [[p5js](https://editor.p5js.org/Xueyu333/sketches/2FjN9s0YC)]
+- [ims02-shane copy-tb\_OxMmbu](./p5projects/ims02-shane%20copy-tb_OxMmbu) [[p5js](https://editor.p5js.org/Xueyu333/sketches/tb_OxMmbu)]
+- [ims02-shane-56koQQZER](./p5projects/ims02-shane-56koQQZER) [[p5js](https://editor.p5js.org/Xueyu333/sketches/56koQQZER)]
 - [ims\_week1-h5lkCnu3T](./p5projects/ims_week1-h5lkCnu3T) [[p5js](https://editor.p5js.org/Xueyu333/sketches/h5lkCnu3T)]
 - [kinetic sculpture\_W2\_WebGL workshop\_texture 3\_starter copy-R14zUc9Tw](./p5projects/kinetic%20sculpture_W2_WebGL%20workshop_texture%203_starter%20copy-R14zUc9Tw) [[p5js](https://editor.p5js.org/Xueyu333/sketches/R14zUc9Tw)]
 - [lab01-7tlzMUlJg](./p5projects/lab01-7tlzMUlJg) [[p5js](https://editor.p5js.org/Xueyu333/sketches/7tlzMUlJg)]
@@ -110,6 +113,10 @@
 - [sample 03-R6vGgn4Fu](./p5projects/sample%2003-R6vGgn4Fu) [[p5js](https://editor.p5js.org/Xueyu333/sketches/R6vGgn4Fu)]
 - [sample 04-OvwikTeX8](./p5projects/sample%2004-OvwikTeX8) [[p5js](https://editor.p5js.org/Xueyu333/sketches/OvwikTeX8)]
 - [sample-TTG-ZxZdH](./p5projects/sample-TTG-ZxZdH) [[p5js](https://editor.p5js.org/Xueyu333/sketches/TTG-ZxZdH)]
+- [twist square01 -back and forth-D3PHob59U](./p5projects/twist%20square01%20-back%20and%20forth-D3PHob59U) [[p5js](https://editor.p5js.org/Xueyu333/sketches/D3PHob59U)]
+- [twist square01 -caputure when small size-\_KED2X7vB](./p5projects/twist%20square01%20-caputure%20when%20small%20size-_KED2X7vB) [[p5js](https://editor.p5js.org/Xueyu333/sketches/_KED2X7vB)]
+- [twist square01 copy copy-RULzN3eHP](./p5projects/twist%20square01%20copy%20copy-RULzN3eHP) [[p5js](https://editor.p5js.org/Xueyu333/sketches/RULzN3eHP)]
+- [twist square01-HV37u3wXz](./p5projects/twist%20square01-HV37u3wXz) [[p5js](https://editor.p5js.org/Xueyu333/sketches/HV37u3wXz)]
 - [webSerial multiple ascii values Arduino to P5 copy-7b8vFkxdM](./p5projects/webSerial%20multiple%20ascii%20values%20Arduino%20to%20P5%20copy-7b8vFkxdM) [[p5js](https://editor.p5js.org/Xueyu333/sketches/7b8vFkxdM)]
 - [webSerial multiple ascii values P5 to Arduino copy-QzMYW8-f6](./p5projects/webSerial%20multiple%20ascii%20values%20P5%20to%20Arduino%20copy-QzMYW8-f6) [[p5js](https://editor.p5js.org/Xueyu333/sketches/QzMYW8-f6)]
 - [webSerial one binary value Arduino to P5 copy-mB9Y4b520](./p5projects/webSerial%20one%20binary%20value%20Arduino%20to%20P5%20copy-mB9Y4b520) [[p5js](https://editor.p5js.org/Xueyu333/sketches/mB9Y4b520)]

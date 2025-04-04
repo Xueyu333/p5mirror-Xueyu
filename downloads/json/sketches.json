@@ -3521,6 +3521,120 @@
     "id": "h5lkCnu3T"
   },
   {
+    "_id": "56koQQZER",
+    "name": "ims02-shane",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e59a5c1932f2e91d3c7b90",
+          "67e59a5c1932f2e91d3c7b91",
+          "67e59a5c1932f2e91d3c7b92"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e59a5c1932f2e91d3c7b8f",
+        "createdAt": "2025-04-04T13:59:44.274Z",
+        "updatedAt": "2025-04-04T13:59:44.274Z",
+        "id": "67e59a5c1932f2e91d3c7b8f"
+      },
+      {
+        "name": "sketch.js",
+        "content": "//reference：https://openprocessing.org/sketch/1396740\n//each time the squares shrink, the webcam takes a snapshot. So, every time the image is pieced together, it looks different.\n\nlet video;\nlet capturedFrame;\nlet tiles = [];\nlet angle = 0;\n\nlet captureInterval = 2000; \nlet lastCaptureTime = 0;\nlet prevSin = 0; \nlet my = {};\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  video = createCapture(VIDEO);\n  video.size(width, height);\n  video.hide(); \n  capturedFrame = createGraphics(width, height);\n  \n  imageMode(CENTER);\n  background(0);\n  \n\n  captureVideoFrame();\n  \n\n  setTimeout(function() {\n    makeTiles(9);\n  }, 1000);\n  \n  \n  setup_fullScreenButton();\n}\n\n\n\n\nfunction captureVideoFrame() {\n  capturedFrame.image(video, 0, 0, width, height);\n  lastCaptureTime = millis();\n}\n\nfunction makeTiles(num) {\n  \n  tiles = [];\n  let id = 50;\n  \n\n  for (let y = capturedFrame.height - capturedFrame.height / num; y >= 0; y -= capturedFrame.height / num) {\n    for (let x = capturedFrame.width - capturedFrame.width / num; x >= 0; x -= capturedFrame.width / num) {\n      \n      let sx = -(capturedFrame.width / 2) + x + capturedFrame.width / (2 * num);\n      let sy = -(capturedFrame.height / 2) + y + capturedFrame.height / (2 * num);\n      let tileWidth = capturedFrame.width / num;\n      let tileHeight = capturedFrame.height / num;\n      \n      tiles.push(new Tile(sx, sy, x, y, tileWidth, tileHeight, id));\n      id += 1;\n    }\n  }\n}\n\nfunction draw() {\n  \n  let currentSin = sin(frameCount / 100);\n  \n  if (currentSin < prevSin && prevSin > 0.9) {\n    captureVideoFrame();//captures a new video frame.\n    console.log(\"Captured new frame - tiles reached minimum size\");\n  }\n  \n  \n  prevSin = currentSin;  \n  \n  \n  translate(width / 2, height / 2);\n  // rotate(angle);\n  \n background(0, 0);\n  \n  \n\n  for (let t of tiles) {\n    t.update(); \n    t.show();\n    // if (frameCount > t.id) t.move();\n  }\n}\n\n\nclass Tile {\n  constructor(x, y, srcX, srcY, width, height, id) {\n    this.pos = createVector(x, y);\n    // this.target = createVector(x, y);\n    this.srcX = srcX;\n    this.srcY = srcY;\n    this.width = width;\n    this.height = height;\n    this.a = 0;\n    this.id = id;\n    this.img = createGraphics(this.width, this.height);\n  }\n  \n  \n \n  update() {\n \n    this.img.image(capturedFrame, 0, 0, this.width, this.height, this.srcX, this.srcY, this.width, this.height);\n  }\n  \n  \n  \n  show() {\n  push();\n  translate(this.pos.x, this.pos.y);\n  \n\n  let freq = this.id * 0.01; \n  let amplitude = 0.5 + sin(frameCount * 0.02) * 0.3; \n  let waveOffset = sin(frameCount * 0.05 + freq) * amplitude * 10;\n  translate(0, waveOffset);\n  \n  rotate(this.a);\n  \n \n  let scaleFactor = (-this.a + PI/2) / TWO_PI;\n  scaleFactor = constrain(scaleFactor, 0.2, 1);\n  \n  scale(scaleFactor);\n  image(this.img, 0, 0);\n  \n  pop();\n  \n  this.a = sin(this.id / 300 + frameCount / 100) * TWO_PI;\n}\n  \n   \n\n//   move() {\n//     this.pos.lerp(this.target, 0.01);\n//   }\n}\n\n// set up the full-screen button.\nfunction setup_fullScreenButton() {\n  my.fullScreenButton = createButton(\"Full Screen\");\n  my.fullScreenButton.position(10, 10);\n  my.fullScreenButton.mousePressed(fullScreen_action);\n  my.fullScreenButton.style(\"font-size:24px\");\n}\n\nfunction fullScreen_action() {\n  // my.fullScreenButton.remove();\n    my.fullScreenButton.style(\"display\", \"none\");\n  fullscreen(1);\n  let delay = 3000;\n  setTimeout(ui_present_window, delay);\n  \n    // Add a event listener\n  document.addEventListener('fullscreenchange', function() {\n    if (!document.fullscreenElement) {\n      // Show the button when exiting fullscreen\n      my.fullScreenButton.style(\"display\", \"block\");\n    }\n  });\n}\n\nfunction ui_present_window() {\n  resizeCanvas(windowWidth, windowHeight);\n  \n  //Adjusts the video size.\n  video.size(width, height);\n  \n  // Recreates the capture buffer.\n  capturedFrame = createGraphics(width, height);\n \n  captureVideoFrame();\n  \n  //Recreates the tile grid.\n  makeTiles(9);\n}\n\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n  background(0);\n\n  video.size(width, height);\n \n  capturedFrame = createGraphics(width, height);\n  \n  captureVideoFrame();\n\n  makeTiles(9);\n}\n\n\n  ",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e59a5c1932f2e91d3c7b91",
+        "createdAt": "2025-04-04T13:59:44.274Z",
+        "updatedAt": "2025-04-04T13:59:44.274Z",
+        "id": "67e59a5c1932f2e91d3c7b91"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e59a5c1932f2e91d3c7b90",
+        "createdAt": "2025-04-04T13:59:44.274Z",
+        "updatedAt": "2025-04-04T13:59:44.274Z",
+        "id": "67e59a5c1932f2e91d3c7b90"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e59a5c1932f2e91d3c7b92",
+        "createdAt": "2025-04-04T13:59:44.274Z",
+        "updatedAt": "2025-04-04T13:59:44.274Z",
+        "id": "67e59a5c1932f2e91d3c7b92"
+      }
+    ],
+    "createdAt": "2025-03-27T18:35:08.406Z",
+    "updatedAt": "2025-04-04T13:59:44.274Z",
+    "id": "56koQQZER"
+  },
+  {
+    "_id": "tb_OxMmbu",
+    "name": "ims02-shane copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67ef2868eb8ba74a592ae884",
+          "67ef2868eb8ba74a592ae885",
+          "67ef2868eb8ba74a592ae886"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67ef2868eb8ba74a592ae883",
+        "createdAt": "2025-04-04T00:31:25.079Z",
+        "updatedAt": "2025-04-04T00:31:25.079Z",
+        "id": "67ef2868eb8ba74a592ae883"
+      },
+      {
+        "name": "sketch.js",
+        "content": "\nlet video;\n\n//declares a variable capturedFrame to store the captured video frame as a graphics buffer.\nlet capturedFrame;\n\n//initializes an empty array tiles to store all tile objects.\nlet tiles = [];\nlet angle = 0;\n\n//(angular velocity) control rotation speed.\nlet av = 0;\nlet captureInterval = 2000; \nlet lastCaptureTime = 0;//store the timestamp of the last frame capture.\nlet prevSin = 0; //store the previous sine value, used to detect wave trend changes.\n\n// Declares an empty object my to store UI elements.\nlet my = {};\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  \n  \n  // Initializes video capture, capturing video from the user's webcam.\n  video = createCapture(VIDEO);\n  \n  // Sets the video size to match the canvas dimensions.\n  video.size(width, height);\n  video.hide(); \n  \n  // Creates a graphics buffer with the same dimensions as the canvas for storing captured video frames.\n  capturedFrame = createGraphics(width, height);\n  \n  imageMode(CENTER);\n  background(0);\n  \n  // Calls the function to immediately capture the current video frame.\n  captureVideoFrame();\n  \n // Wait for the video to initialize and then create the 9x9 tiles\n  setTimeout(function() {\n    makeTiles(9);\n    \n    // scrambles tiles\n    // scrambleTiles();\n  }, 1000);//This delay ensures the video is initialized.\n  \n  // Sets up the full-screen button.\n  setup_fullScreenButton();\n}\n\n\n\n// Defines the captureVideoFrame function for capturing video frames.\nfunction captureVideoFrame() {\n  \n  // Copies the current video frame to the capturedFrame graphics buffer.\n  capturedFrame.image(video, 0, 0, width, height);\n  \n  // Records the current timestamp as the last capture time.\n  lastCaptureTime = millis();\n}\n\nfunction makeTiles(num) {\n  \n  \n  // Clears the tiles array to prepare for creating new tiles.\n  tiles = [];\n  \n  let id = 50;\n  \n  \n  // Outer loop to iterate through rows from bottom to top.\n  for (let y = capturedFrame.height - capturedFrame.height / num; y >= 0; y -= capturedFrame.height / num) {\n    \n    // Inner loop to iterate through columns from right to left.\n    for (let x = capturedFrame.width - capturedFrame.width / num; x >= 0; x -= capturedFrame.width / num) {\n      \n      \n      // Calculates the x-coordinate of the tile on the canvas (relative to the canvas center).\n      let sx = -(capturedFrame.width / 2) + x + capturedFrame.width / (2 * num);\n      let sy = -(capturedFrame.height / 2) + y + capturedFrame.height / (2 * num);\n      let tileWidth = capturedFrame.width / num;\n      let tileHeight = capturedFrame.height / num;\n      \n      // Creates a new Tile object and adds it to the tiles array.\n      tiles.push(new Tile(sx, sy, x, y, tileWidth, tileHeight, id));\n      id += 1;\n    }\n  }\n}\n\nfunction draw() {\n  // Calculates the current sine value based on the frame count, used for creating wave effects.\n  let currentSin = sin(frameCount / 100);\n  \n// Checks if the sine wave has just reached its peak and is starting to descend.\n  if (currentSin < prevSin && prevSin > 0.9) {\n    captureVideoFrame();//captures a new video frame.\n    console.log(\"Captured new frame - tiles reached minimum size\");\n  }\n  \n  // Saves the current sine value for comparison in the next frame.\n  prevSin = currentSin;\n  \n  angle += av;//Updates the rotation angle based on the angular velocity.\n  av *= 0.9;//Reduces the angular velocity by 10% each frame (creates a damping effect).\n  angle *= 0.95;//Reduces the angle by 5% each frame (creates a damping effect).\n  \n  translate(width / 2, height / 2);\n  rotate(angle);\n  \n  if (!keyIsDown(65)) background(0, 0);\n  \n  \n  //Iterates through all tile objects.\n  for (let t of tiles) {\n    \n    //Updates the tile's content \n    t.update(); \n    t.show();\n    //If the current frame count exceeds the tile's ID, moves the tile (creates a sequential movement effect).\n    if (frameCount > t.id) t.move();\n  }\n}\n\nfunction keyPressed() {\n  if (keyCode == 32) { //If the spacebar (ASCII code 32) is pressed.\n    background(0);\n    captureVideoFrame(); \n    scrambleTiles();    \n  }\n}\n\nfunction scrambleTiles() {\n  for (let t of tiles) {\n    //Assigns a random x-coordinate to the tile.\n    t.pos.x = random(-width / 2, width / 2);\n    t.pos.y = random(-height / 2, height / 2);\n  }\n  angle = 0;\n  av = 0;\n}\n\n//Defines the Tile class to represent a single tile.\nclass Tile {\n  constructor(x, y, srcX, srcY, width, height, id) {\n    this.pos = createVector(x, y);//Creates a position vector representing the tile's current position.\n    this.target = createVector(x, y);//Creates a target vector representing the tile's destination position.\n    this.srcX = srcX;//The x-coordinate in the original video frame.\n    this.srcY = srcY;\n    this.width = width;//The tile width.\n    this.height = height;\n    this.a = 0;\n    this.id = id;\n    this.img = createGraphics(this.width, this.height);\n  }\n  \n  \n  // refresh the tile's content.\n  update() {\n    //Copies the corresponding region from the captured video frame to the tile's graphics buffer.\n    this.img.image(capturedFrame, 0, 0, this.width, this.height, this.srcX, this.srcY, this.width, this.height);\n  }\n  \n  show() {\n  push();\n  translate(this.pos.x, this.pos.y);\n  \n//Calculates the frequency based on the tile's ID (each tile has a different frequency).\n  let freq = this.id * 0.01; \n    \n  //Calculates the amplitude that varies over time (between 0.2 and 0.8).\n  let amplitude = 0.5 + sin(frameCount * 0.02) * 0.3; \n  \n //Calculates the wave offset based on time, frequency, and amplitude.\n  let waveOffset = sin(frameCount * 0.05 + freq) * amplitude * 10;\n  translate(0, waveOffset);\n  \n  rotate(this.a);\n  \n  //Calculates the scale factor based on the rotation angle.\n  let scaleFactor = (-this.a + PI/2) / TWO_PI;\n    \n  //Constrains the scale factor between 0.2 and 1.\n  scaleFactor = constrain(scaleFactor, 0.2, 1);\n  \n  scale(scaleFactor);\n  \n  //Draws the tile's image.\n  image(this.img, 0, 0);\n  \n  pop();\n  \n  //Updates the tile's rotation angle based on its ID and time, creating periodic rotation.\n  this.a = sin(this.id / 300 + frameCount / 100) * TWO_PI;\n}\n  \n  \n  \n  //Uses linear interpolation (lerp) to smoothly move the current position 1% toward the target position, creating an easing effect.\n  move() {\n    this.pos.lerp(this.target, 0.01);\n  }\n}\n\n// set up the full-screen button.\nfunction setup_fullScreenButton() {\n  my.fullScreenButton = createButton(\"Full Screen\");\n  my.fullScreenButton.position(10, 10);\n  my.fullScreenButton.mousePressed(fullScreen_action);\n  my.fullScreenButton.style(\"font-size:24px\");\n}\n\nfunction fullScreen_action() {\n  // my.fullScreenButton.remove();\n    my.fullScreenButton.style(\"display\", \"none\");\n  fullscreen(1);\n  let delay = 3000;\n  setTimeout(ui_present_window, delay);\n  \n    // Add a event listener\n  document.addEventListener('fullscreenchange', function() {\n    if (!document.fullscreenElement) {\n      // Show the button when exiting fullscreen\n      my.fullScreenButton.style(\"display\", \"block\");\n    }\n  });\n}\n\nfunction ui_present_window() {\n  resizeCanvas(windowWidth, windowHeight);\n  \n  //Adjusts the video size.\n  video.size(width, height);\n  \n  // Recreates the capture buffer.\n  capturedFrame = createGraphics(width, height);\n \n  captureVideoFrame();\n  \n  //Recreates the tile grid.\n  makeTiles(9);\n}\n\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n  background(0);\n\n  video.size(width, height);\n \n  capturedFrame = createGraphics(width, height);\n  \n  captureVideoFrame();\n\n  makeTiles(9);\n}\n\n\n  \n//   show() {\n//     push();\n//     translate(this.pos.x, this.pos.y);\n//     rotate(this.a);\n    \n//     // 关键修改：反转缩放逻辑\n//     // 原来是 this.a 为正（逆时针旋转）时放大，为负（顺时针旋转）时缩小\n//     // 现在我们要相反：this.a 为正时缩小，为负时放大\n    \n//     // 使用 -this.a 来反转缩放与旋转的关系\n//     // 添加一个小的偏移确保不会缩放到0（完全消失）\n//     let scaleFactor = (-this.a + PI/2) / TWO_PI;\n    \n//     // 确保缩放因子在合理范围内\n//     scaleFactor = constrain(scaleFactor, 0.2, 1);\n    \n//     scale(scaleFactor);\n//     image(this.img, 0, 0);\n//     pop();\n    \n//     // 保持原来的旋转计算不变\n//     this.a = sin(this.id / 300 + frameCount / 100) * TWO_PI;\n//   }\n  ",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67ef2868eb8ba74a592ae885",
+        "createdAt": "2025-04-04T00:31:25.079Z",
+        "updatedAt": "2025-04-04T00:31:25.079Z",
+        "id": "67ef2868eb8ba74a592ae885"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef2868eb8ba74a592ae884",
+        "createdAt": "2025-04-04T00:31:25.079Z",
+        "updatedAt": "2025-04-04T00:31:25.079Z",
+        "id": "67ef2868eb8ba74a592ae884"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef2868eb8ba74a592ae886",
+        "createdAt": "2025-04-04T00:31:25.079Z",
+        "updatedAt": "2025-04-04T00:31:25.079Z",
+        "id": "67ef2868eb8ba74a592ae886"
+      }
+    ],
+    "createdAt": "2025-04-04T00:31:36.692Z",
+    "updatedAt": "2025-04-04T00:31:36.692Z",
+    "id": "tb_OxMmbu"
+  },
+  {
     "_id": "R14zUc9Tw",
     "name": "kinetic sculpture_W2_WebGL workshop_texture 3_starter copy",
     "files": [
@@ -6329,6 +6443,285 @@
     "updatedAt": "2024-10-24T21:50:09.900Z",
     "createdAt": "2024-10-24T21:50:08.197Z",
     "id": "DofZSsCse"
+  },
+  {
+    "_id": "HV37u3wXz",
+    "name": "twist square01",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e4dbe71932f2e91d3c7b80",
+          "67e4dbe71932f2e91d3c7b7f",
+          "67e4dbe71932f2e91d3c7b81"
+        ],
+        "fileType": "folder",
+        "_id": "67e4dbe71932f2e91d3c7b82",
+        "createdAt": "2025-03-27T15:42:43.543Z",
+        "updatedAt": "2025-03-27T15:42:43.543Z",
+        "id": "67e4dbe71932f2e91d3c7b82"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let video;\nlet tiles = [];\nlet angle = 0;\nlet av = 0;\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  // Create video capture\n  video = createCapture(VIDEO);\n  video.size(width, height);\n  video.hide(); // Hide the original video element\n  \n  imageMode(CENTER);\n  background(0);\n  \n  // Wait a bit for video to initialize before making tiles\n  setTimeout(makeTiles, 1000, 16);\n}\n\nfunction makeTiles(num) {\n  // Clear any existing tiles\n  tiles = [];\n  \n  let id = 30;\n  for (let y = video.height - video.height / num; y >= 0; y -= video.height / num) {\n    for (let x = video.width - video.width / num; x >= 0; x -= video.width / num) {\n      let sx = -(video.width / 2) + x + video.width / (2 * num);\n      let sy = -(video.height / 2) + y + video.height / (2 * num);\n      let tileWidth = video.width / num;\n      let tileHeight = video.height / num;\n      \n      tiles.push(new Tile(sx, sy, x, y, tileWidth, tileHeight, id));\n      id += 1;\n    }\n  }\n}\n\nfunction draw() {\n  angle += av;\n  av *= 0.9;\n  angle *= 0.95;\n  \n  translate(width / 2, height / 2);\n  rotate(angle);\n  \n  if (!keyIsDown(65)) background(0, 12);\n  \n  for (let t of tiles) {\n    t.update(); // Update the tile's video frame\n    t.show();\n    if (frameCount > t.id) t.move();\n  }\n  \n  checkKeys();\n}\n\nfunction mousePressed() {\n  background(0);\n  for (let t of tiles) {\n    t.pos.x = mouseX - width/2;\n    t.pos.y = mouseY - height/2;\n  }\n}\n\nfunction keyPressed() {\n  if (keyCode == 32) {\n    background(0);\n    for (let t of tiles) {\n      t.pos.x = random(-width / 2, width / 2);\n      t.pos.y = random(-height / 2, height / 2);\n      angle = 0;\n      av = 0;\n    }\n  }\n}\n\nfunction checkKeys() {\n  if (keyIsDown(RIGHT_ARROW)) {\n    for (let t of tiles) {\n      t.target.x += 20;\n    }\n  }\n  if (keyIsDown(LEFT_ARROW)) {\n    for (let t of tiles) {\n      t.target.x -= 20;\n    }\n  }\n  if (keyIsDown(UP_ARROW)) {\n    av += 0.01;\n  }\n  if (keyIsDown(DOWN_ARROW)) {\n    av -= 0.01;\n  }\n}\n\nclass Tile {\n  constructor(x, y, srcX, srcY, width, height, id) {\n    this.pos = createVector(random(-width/2, width/2), random(-height/2, height/2));\n    this.target = createVector(x, y);\n    this.srcX = srcX;\n    this.srcY = srcY;\n    this.width = width;\n    this.height = height;\n    this.a = 0;\n    this.id = id;\n    this.img = createGraphics(this.width, this.height);\n  }\n  \n  update() {\n    // Update the tile's image with the current video frame\n    this.img.image(video, 0, 0, this.width, this.height, this.srcX, this.srcY, this.width, this.height);\n  }\n  \n  show() {\n    push();\n    translate(this.pos.x, this.pos.y);\n    rotate(this.a);\n    scale(this.a / TWO_PI);\n    image(this.img, 0, 0);\n    pop();\n    this.a = sin(this.id / 300 + frameCount / 100) * TWO_PI;\n  }\n  \n  move() {\n    this.pos.lerp(this.target, 0.01);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e4dbe71932f2e91d3c7b7f",
+        "createdAt": "2025-03-27T15:42:43.543Z",
+        "updatedAt": "2025-03-27T15:42:43.543Z",
+        "id": "67e4dbe71932f2e91d3c7b7f"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "67e4dbe71932f2e91d3c7b80",
+        "createdAt": "2025-03-27T15:42:43.543Z",
+        "updatedAt": "2025-03-27T15:42:43.543Z",
+        "id": "67e4dbe71932f2e91d3c7b80"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "67e4dbe71932f2e91d3c7b81",
+        "createdAt": "2025-03-27T15:42:43.543Z",
+        "updatedAt": "2025-03-27T15:42:43.543Z",
+        "id": "67e4dbe71932f2e91d3c7b81"
+      }
+    ],
+    "updatedAt": "2025-03-27T15:42:43.543Z",
+    "createdAt": "2025-03-27T15:42:43.543Z",
+    "id": "HV37u3wXz"
+  },
+  {
+    "_id": "D3PHob59U",
+    "name": "twist square01 -back and forth",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e571f51932f2e91d3c7b84",
+          "67e571f51932f2e91d3c7b85",
+          "67e571f51932f2e91d3c7b86"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e571f51932f2e91d3c7b83",
+        "createdAt": "2025-03-27T18:37:29.283Z",
+        "updatedAt": "2025-03-27T18:37:29.283Z",
+        "id": "67e571f51932f2e91d3c7b83"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let video;\nlet capturedFrame;\nlet tiles = [];\nlet angle = 0;\nlet av = 0;\nlet captureInterval = 3000; // 捕获间隔（毫秒）\nlet lastCaptureTime = 0;\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  // 创建视频捕获\n  video = createCapture(VIDEO);\n  video.size(width, height);\n  video.hide(); // 隐藏原始视频元素\n  \n  // 创建一个图像缓冲区用于存储捕获的画面\n  capturedFrame = createGraphics(width, height);\n  \n  imageMode(CENTER);\n  background(0);\n  \n  // 立即进行第一次捕获\n  captureVideoFrame();\n  \n  // 等待视频初始化后创建拼贴\n  setTimeout(makeTiles, 1000, 16);\n}\n\nfunction captureVideoFrame() {\n  // 将当前视频帧复制到捕获缓冲区\n  capturedFrame.image(video, 0, 0, width, height);\n  lastCaptureTime = millis();\n}\n\nfunction makeTiles(num) {\n  // 清除已存在的拼贴块\n  tiles = [];\n  \n  let id = 30;\n  for (let y = capturedFrame.height - capturedFrame.height / num; y >= 0; y -= capturedFrame.height / num) {\n    for (let x = capturedFrame.width - capturedFrame.width / num; x >= 0; x -= capturedFrame.width / num) {\n      let sx = -(capturedFrame.width / 2) + x + capturedFrame.width / (2 * num);\n      let sy = -(capturedFrame.height / 2) + y + capturedFrame.height / (2 * num);\n      let tileWidth = capturedFrame.width / num;\n      let tileHeight = capturedFrame.height / num;\n      \n      tiles.push(new Tile(sx, sy, x, y, tileWidth, tileHeight, id));\n      id += 1;\n    }\n  }\n}\n\nfunction draw() {\n  // 检查是否需要更新捕获的帧\n  if (millis() - lastCaptureTime > captureInterval) {\n    captureVideoFrame();\n    // 当捕获新帧时，可以选择是否重新打乱拼贴\n    // 取消下面的注释可以在每次捕获新帧时自动打乱拼贴\n    // scrambleTiles();\n  }\n  \n  angle += av;\n  av *= 0.9;\n  angle *= 0.95;\n  \n  translate(width / 2, height / 2);\n  rotate(angle);\n  \n  if (!keyIsDown(65)) background(0, 12);\n  \n  for (let t of tiles) {\n    t.update(); // 更新拼贴块的内容\n    t.show();\n    if (frameCount > t.id) t.move();\n  }\n}\n\nfunction keyPressed() {\n  if (keyCode == 32) {  // 空格键\n    background(0);\n    captureVideoFrame(); // 按空格键时捕获新的画面\n    scrambleTiles();     // 并打乱拼贴\n  } else if (keyCode == 67) { // C键 - 仅捕获新画面而不打乱\n    captureVideoFrame();\n  }\n}\n\nfunction scrambleTiles() {\n  for (let t of tiles) {\n    t.pos.x = random(-width / 2, width / 2);\n    t.pos.y = random(-height / 2, height / 2);\n  }\n  angle = 0;\n  av = 0;\n}\n\nfunction mousePressed() {\n  background(0);\n  for (let t of tiles) {\n    t.pos.x = mouseX - width/2;\n    t.pos.y = mouseY - height/2;\n  }\n}\n\n\n\nclass Tile {\n  constructor(x, y, srcX, srcY, width, height, id) {\n    this.pos = createVector(x, y);\n    this.target = createVector(x, y);\n    this.srcX = srcX;\n    this.srcY = srcY;\n    this.width = width;\n    this.height = height;\n    this.a = 0;\n    this.id = id;\n    this.img = createGraphics(this.width, this.height);\n  }\n  \n  update() {\n    // 从捕获的画面更新拼贴块\n    this.img.image(capturedFrame, 0, 0, this.width, this.height, this.srcX, this.srcY, this.width, this.height);\n  }\n  \n  show() {\n    push();\n    translate(this.pos.x, this.pos.y);\n    rotate(this.a);\n    scale(this.a / TWO_PI);\n    image(this.img, 0, 0);\n    pop();\n    this.a = sin(this.id / 300 + frameCount / 100) * TWO_PI;\n  }\n  \n  move() {\n    this.pos.lerp(this.target, 0.01);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e571f51932f2e91d3c7b85",
+        "createdAt": "2025-03-27T18:37:29.283Z",
+        "updatedAt": "2025-03-27T18:37:29.283Z",
+        "id": "67e571f51932f2e91d3c7b85"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e571f51932f2e91d3c7b84",
+        "createdAt": "2025-03-27T18:37:29.283Z",
+        "updatedAt": "2025-03-27T18:37:29.283Z",
+        "id": "67e571f51932f2e91d3c7b84"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e571f51932f2e91d3c7b86",
+        "createdAt": "2025-03-27T18:37:29.283Z",
+        "updatedAt": "2025-03-27T18:37:29.283Z",
+        "id": "67e571f51932f2e91d3c7b86"
+      }
+    ],
+    "createdAt": "2025-03-27T15:42:45.917Z",
+    "updatedAt": "2025-03-27T18:37:29.283Z",
+    "id": "D3PHob59U"
+  },
+  {
+    "_id": "_KED2X7vB",
+    "name": "twist square01 -caputure when small size",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e598811932f2e91d3c7b8c",
+          "67e598811932f2e91d3c7b8d",
+          "67e598811932f2e91d3c7b8e"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e598811932f2e91d3c7b8b",
+        "createdAt": "2025-03-27T18:36:41.334Z",
+        "updatedAt": "2025-03-27T18:36:41.334Z",
+        "id": "67e598811932f2e91d3c7b8b"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let video;\nlet capturedFrame;\nlet tiles = [];\nlet angle = 0;\nlet av = 0;\nlet captureInterval = 2000; // 捕获间隔（毫秒）\nlet lastCaptureTime = 0;\nlet prevSin = 0; // 用于检测正弦波的变化趋势\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  // 创建视频捕获\n  video = createCapture(VIDEO);\n  video.size(width, height);\n  video.hide(); // 隐藏原始视频元素\n  \n  // 创建一个图像缓冲区用于存储捕获的画面\n  capturedFrame = createGraphics(width, height);\n  \n  imageMode(CENTER);\n  background(0);\n  \n  // 立即进行第一次捕获\n  captureVideoFrame();\n  \n  // 等待视频初始化后创建拼贴\n  setTimeout(makeTiles, 1000, 16);\n}\n\nfunction captureVideoFrame() {\n  // 将当前视频帧复制到捕获缓冲区\n  capturedFrame.image(video, 0, 0, width, height);\n  lastCaptureTime = millis();\n}\n\nfunction makeTiles(num) {\n  // 清除已存在的拼贴块\n  tiles = [];\n  \n  let id = 30;\n  for (let y = capturedFrame.height - capturedFrame.height / num; y >= 0; y -= capturedFrame.height / num) {\n    for (let x = capturedFrame.width - capturedFrame.width / num; x >= 0; x -= capturedFrame.width / num) {\n      let sx = -(capturedFrame.width / 2) + x + capturedFrame.width / (2 * num);\n      let sy = -(capturedFrame.height / 2) + y + capturedFrame.height / (2 * num);\n      let tileWidth = capturedFrame.width / num;\n      let tileHeight = capturedFrame.height / num;\n      \n      tiles.push(new Tile(sx, sy, x, y, tileWidth, tileHeight, id));\n      id += 1;\n    }\n  }\n}\n\nfunction draw() {\n  // 检测方块是否在最小尺寸点\n  let currentSin = sin(frameCount / 100);\n  \n  // 当正弦值从上升变为下降时，说明刚刚达到最大值（对应方块最小状态）\n  if (currentSin < prevSin && prevSin > 0.9) {\n    captureVideoFrame();\n    console.log(\"捕获新帧 - 方块达到最小尺寸\");\n  }\n  \n  // 保存当前正弦值用于下一帧比较\n  prevSin = currentSin;\n  \n  angle += av;\n  av *= 0.9;\n  angle *= 0.95;\n  \n  translate(width / 2, height / 2);\n  rotate(angle);\n  \n  if (!keyIsDown(65)) background(0, 12);\n  \n  for (let t of tiles) {\n    t.update(); // 更新拼贴块的内容\n    t.show();\n    if (frameCount > t.id) t.move();\n  }\n}\n\nfunction keyPressed() {\n  if (keyCode == 32) {  // 空格键\n    background(0);\n    captureVideoFrame(); // 按空格键时捕获新的画面\n    scrambleTiles();     // 并打乱拼贴\n  } else if (keyCode == 67) { // C键 - 仅捕获新画面而不打乱\n    captureVideoFrame();\n  }\n}\n\nfunction scrambleTiles() {\n  for (let t of tiles) {\n    t.pos.x = random(-width / 2, width / 2);\n    t.pos.y = random(-height / 2, height / 2);\n  }\n  angle = 0;\n  av = 0;\n}\n\nfunction mousePressed() {\n  background(0);\n  for (let t of tiles) {\n    t.pos.x = mouseX - width/2;\n    t.pos.y = mouseY - height/2;\n  }\n}\n\nclass Tile {\n  constructor(x, y, srcX, srcY, width, height, id) {\n    this.pos = createVector(x, y);\n    this.target = createVector(x, y);\n    this.srcX = srcX;\n    this.srcY = srcY;\n    this.width = width;\n    this.height = height;\n    this.a = 0;\n    this.id = id;\n    this.img = createGraphics(this.width, this.height);\n  }\n  \n  update() {\n    // 从捕获的画面更新拼贴块\n    this.img.image(capturedFrame, 0, 0, this.width, this.height, this.srcX, this.srcY, this.width, this.height);\n  }\n  \n  show() {\n    push();\n    translate(this.pos.x, this.pos.y);\n    rotate(this.a);\n    \n    // 关键修改：反转缩放逻辑\n    // 原来是 this.a 为正（逆时针旋转）时放大，为负（顺时针旋转）时缩小\n    // 现在我们要相反：this.a 为正时缩小，为负时放大\n    \n    // 使用 -this.a 来反转缩放与旋转的关系\n    // 添加一个小的偏移确保不会缩放到0（完全消失）\n    let scaleFactor = (-this.a + PI/2) / TWO_PI;\n    \n    // 确保缩放因子在合理范围内\n    scaleFactor = constrain(scaleFactor, 0.2, 1);\n    \n    scale(scaleFactor);\n    image(this.img, 0, 0);\n    pop();\n    \n    // 保持原来的旋转计算不变\n    this.a = sin(this.id / 300 + frameCount / 100) * TWO_PI;\n  }\n  \n  move() {\n    this.pos.lerp(this.target, 0.01);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e598811932f2e91d3c7b8d",
+        "createdAt": "2025-03-27T18:36:41.334Z",
+        "updatedAt": "2025-03-27T18:36:41.334Z",
+        "id": "67e598811932f2e91d3c7b8d"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e598811932f2e91d3c7b8c",
+        "createdAt": "2025-03-27T18:36:41.334Z",
+        "updatedAt": "2025-03-27T18:36:41.334Z",
+        "id": "67e598811932f2e91d3c7b8c"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e598811932f2e91d3c7b8e",
+        "createdAt": "2025-03-27T18:36:41.334Z",
+        "updatedAt": "2025-03-27T18:36:41.334Z",
+        "id": "67e598811932f2e91d3c7b8e"
+      }
+    ],
+    "createdAt": "2025-03-27T18:27:13.756Z",
+    "updatedAt": "2025-03-27T18:36:41.334Z",
+    "id": "_KED2X7vB"
+  },
+  {
+    "_id": "RULzN3eHP",
+    "name": "twist square01 copy copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e5913f1932f2e91d3c7b88",
+          "67e5913f1932f2e91d3c7b89",
+          "67e5913f1932f2e91d3c7b8a"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5913f1932f2e91d3c7b87",
+        "createdAt": "2025-03-27T18:27:10.375Z",
+        "updatedAt": "2025-03-27T18:27:10.375Z",
+        "id": "67e5913f1932f2e91d3c7b87"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let video;\nlet capturedFrame;\nlet tiles = [];\nlet angle = 0;\nlet av = 0;\nlet captureInterval = 2000; // 捕获间隔（毫秒）\nlet lastCaptureTime = 0;\n// 添加全局变量\nlet animTimer = 0;\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  // 创建视频捕获\n  video = createCapture(VIDEO);\n  video.size(width, height);\n  video.hide(); // 隐藏原始视频元素\n  \n  // 创建一个图像缓冲区用于存储捕获的画面\n  capturedFrame = createGraphics(width, height);\n  \n  imageMode(CENTER);\n  background(0);\n  \n  // 立即进行第一次捕获\n  captureVideoFrame();\n  \n  // 等待视频初始化后创建拼贴\n  setTimeout(makeTiles, 1000, 16);\n}\n\nfunction captureVideoFrame() {\n  // 将当前视频帧复制到捕获缓冲区\n  capturedFrame.image(video, 0, 0, width, height);\n  lastCaptureTime = millis();\n}\n\nfunction makeTiles(num) {\n  // 清除已存在的拼贴块\n  tiles = [];\n  \n  let id = 30;\n  for (let y = capturedFrame.height - capturedFrame.height / num; y >= 0; y -= capturedFrame.height / num) {\n    for (let x = capturedFrame.width - capturedFrame.width / num; x >= 0; x -= capturedFrame.width / num) {\n      let sx = -(capturedFrame.width / 2) + x + capturedFrame.width / (2 * num);\n      let sy = -(capturedFrame.height / 2) + y + capturedFrame.height / (2 * num);\n      let tileWidth = capturedFrame.width / num;\n      let tileHeight = capturedFrame.height / num;\n      \n      tiles.push(new Tile(sx, sy, x, y, tileWidth, tileHeight, id));\n      id += 1;\n    }\n  }\n}\n\nfunction draw() {\n  // 检查是否需要更新捕获的帧\n  if (millis() - lastCaptureTime > captureInterval) {\n    captureVideoFrame();\n    // 当捕获新帧时，可以选择是否重新打乱拼贴\n    // 取消下面的注释可以在每次捕获新帧时自动打乱拼贴\n    // scrambleTiles();\n  }\n  \n  angle += av;\n  av *= 0.9;\n  angle *= 0.95;\n  \n  translate(width / 2, height / 2);\n  rotate(angle);\n  \n  if (!keyIsDown(65)) background(0, 12);\n  \n  for (let t of tiles) {\n    t.update(); // 更新拼贴块的内容\n    t.show();\n    if (frameCount > t.id) t.move();\n  }\n}\n\nfunction keyPressed() {\n  if (keyCode == 32) {  // 空格键\n    background(0);\n    captureVideoFrame(); // 按空格键时捕获新的画面\n    scrambleTiles();     // 并打乱拼贴\n  } else if (keyCode == 67) { // C键 - 仅捕获新画面而不打乱\n    captureVideoFrame();\n  }\n}\n\nfunction scrambleTiles() {\n  for (let t of tiles) {\n    t.pos.x = random(-width / 2, width / 2);\n    t.pos.y = random(-height / 2, height / 2);\n  }\n  angle = 0;\n  av = 0;\n}\n\nfunction mousePressed() {\n  background(0);\n  for (let t of tiles) {\n    t.pos.x = mouseX - width/2;\n    t.pos.y = mouseY - height/2;\n  }\n}\n\n\n\nclass Tile {\n  constructor(x, y, srcX, srcY, width, height, id) {\n    this.pos = createVector(x, y);\n    this.target = createVector(x, y);\n    this.srcX = srcX;\n    this.srcY = srcY;\n    this.width = width;\n    this.height = height;\n    this.a = 0;\n    this.id = id;\n    this.img = createGraphics(this.width, this.height);\n  }\n  \n  update() {\n    // 从捕获的画面更新拼贴块\n    this.img.image(capturedFrame, 0, 0, this.width, this.height, this.srcX, this.srcY, this.width, this.height);\n  }\n  \n  \n  \nshow() {\n  push();\n  translate(this.pos.x, this.pos.y);\n  rotate(this.a);\n  \n  // 关键修改：反转缩放逻辑\n  // 原来是 this.a 为正（逆时针旋转）时放大，为负（顺时针旋转）时缩小\n  // 现在我们要相反：this.a 为正时缩小，为负时放大\n  \n  // 使用 -this.a 来反转缩放与旋转的关系\n  // 添加一个小的偏移确保不会缩放到0（完全消失）\n  let scaleFactor = (-this.a + PI/2) / TWO_PI;\n  \n  // 确保缩放因子在合理范围内\n  scaleFactor = constrain(scaleFactor, 0.2, 1);\n  \n  scale(scaleFactor);\n  image(this.img, 0, 0);\n  pop();\n  \n  // 保持原来的旋转计算不变\n  this.a = sin(this.id / 300 + frameCount / 100) * TWO_PI;\n}\n  \n  move() {\n    this.pos.lerp(this.target, 0.01);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e5913f1932f2e91d3c7b89",
+        "createdAt": "2025-03-27T18:27:10.375Z",
+        "updatedAt": "2025-03-27T18:27:10.375Z",
+        "id": "67e5913f1932f2e91d3c7b89"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5913f1932f2e91d3c7b88",
+        "createdAt": "2025-03-27T18:27:10.375Z",
+        "updatedAt": "2025-03-27T18:27:10.375Z",
+        "id": "67e5913f1932f2e91d3c7b88"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5913f1932f2e91d3c7b8a",
+        "createdAt": "2025-03-27T18:27:10.375Z",
+        "updatedAt": "2025-03-27T18:27:10.375Z",
+        "id": "67e5913f1932f2e91d3c7b8a"
+      }
+    ],
+    "createdAt": "2025-03-27T17:56:15.255Z",
+    "updatedAt": "2025-03-27T18:27:10.375Z",
+    "id": "RULzN3eHP"
+  },
+  {
+    "_id": "gEfAGJS9D",
+    "name": "Twisty Squares by Ivan Rudnicki copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e4c9ae1932f2e91d3c7b74",
+          "67e4c9ae1932f2e91d3c7b75",
+          "67e4c9ae1932f2e91d3c7b76"
+        ],
+        "fileType": "folder",
+        "_id": "67e4c9ae1932f2e91d3c7b73",
+        "createdAt": "2021-07-30T00:55:38.495Z",
+        "updatedAt": "2021-07-30T00:55:38.495Z",
+        "id": "67e4c9ae1932f2e91d3c7b73"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let a1 = 0; //宣告變數a1並代入0\nlet a2 = 0; //宣告變數a2並代入0\n\nfunction setup(){\n  createCanvas(windowWidth, windowHeight); //創建畫布(視窗的寬, 高)\n  background(0); //背景色(黑)\n  colorMode(HSB); //設定使用HSB色彩模式，各階段數為？\n  rectMode(CENTER); //繪製矩形的模式(中央)\n  angleMode(DEGREES); //設定使用角度的模式(依度數法)\n  stroke(0); //縣條的顏色(黑)\n}\n\nfunction draw(){\n  background(0, 0.2); //背景色(黑)0.2為透明度\n  translate(width/2, height/2); //位移原點座標至畫布的中央\n  \n  for(let i = width/2; i < width; i += 24){ //利用for迴圈處理變數i\n\tpush(); //暫存原點座標\n\trotate(45*cos(i*a1)); //旋轉(45*cos(i*a1))\n\tfill(i%360, 70, 100); //填塗顏色\n\trect(0, 0, width-i, width-i, (width-i)/8); //繪製矩形\n\tpop(); //恢復原點座標\n  }\n  a1 = tan(a2); //變數a1代入sin(a2)\n  a2 += 0.2; //變數a2逐次遞增0.2\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e4c9ae1932f2e91d3c7b75",
+        "createdAt": "2021-07-30T00:55:38.495Z",
+        "updatedAt": "2021-07-30T00:55:38.495Z",
+        "id": "67e4c9ae1932f2e91d3c7b75"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "67e4c9ae1932f2e91d3c7b74",
+        "createdAt": "2021-07-30T00:55:38.495Z",
+        "updatedAt": "2021-07-30T00:55:38.495Z",
+        "id": "67e4c9ae1932f2e91d3c7b74"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "67e4c9ae1932f2e91d3c7b76",
+        "createdAt": "2021-07-30T00:55:38.495Z",
+        "updatedAt": "2021-07-30T00:55:38.495Z",
+        "id": "67e4c9ae1932f2e91d3c7b76"
+      }
+    ],
+    "createdAt": "2025-03-27T03:44:46.129Z",
+    "updatedAt": "2025-03-27T03:44:46.129Z",
+    "id": "gEfAGJS9D"
   },
   {
     "_id": "0AT7EskLP",

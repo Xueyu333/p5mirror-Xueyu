@@ -1,5 +1,12 @@
 # Sketches for Xueyu333
-169 sketches  
+176 sketches  
+[ims02-shane](https://editor.p5js.org/Xueyu333/sketches/56koQQZER)<!-- 2025-04-04T13:59:44.274Z -->  
+[ims02-shane copy](https://editor.p5js.org/Xueyu333/sketches/tb_OxMmbu)<!-- 2025-04-04T00:31:36.692Z -->  
+[twist square01 -back and forth](https://editor.p5js.org/Xueyu333/sketches/D3PHob59U)<!-- 2025-03-27T18:37:29.283Z -->  
+[twist square01 -caputure when small size](https://editor.p5js.org/Xueyu333/sketches/_KED2X7vB)<!-- 2025-03-27T18:36:41.334Z -->  
+[twist square01 copy copy](https://editor.p5js.org/Xueyu333/sketches/RULzN3eHP)<!-- 2025-03-27T18:27:10.375Z -->  
+[twist square01](https://editor.p5js.org/Xueyu333/sketches/HV37u3wXz)<!-- 2025-03-27T15:42:43.543Z -->  
+[Twisty Squares by Ivan Rudnicki copy](https://editor.p5js.org/Xueyu333/sketches/gEfAGJS9D)<!-- 2025-03-27T03:44:46.129Z -->  
 [ims\_week1](https://editor.p5js.org/Xueyu333/sketches/h5lkCnu3T)<!-- 2025-03-21T14:47:19.446Z -->  
 [example02](https://editor.p5js.org/Xueyu333/sketches/3eLO8_VQ4)<!-- 2025-03-18T01:42:11.313Z -->  
 [example01](https://editor.p5js.org/Xueyu333/sketches/0e2Kq7TZW)<!-- 2025-03-18T01:39:11.340Z -->  

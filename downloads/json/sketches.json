@@ -240,6 +240,297 @@
     "id": "SB-Nz11SO"
   },
   {
+    "_id": "mbE3vWlKP",
+    "name": "09 emotion recognition in real time copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "680ed610f6f1d82bdf060513",
+          "680ed610f6f1d82bdf060514",
+          "680ed610f6f1d82bdf060515"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "680ed610f6f1d82bdf060512",
+        "createdAt": "2025-04-28T02:50:08.332Z",
+        "updatedAt": "2025-04-28T02:50:08.332Z",
+        "id": "680ed610f6f1d82bdf060512"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let capture;\nlet capturewidth = 640;    \nlet captureheight = 480;\n\nlet faceapi;\nlet detections = [];\n\nlet happyThreshold = 0.6; // 设定笑容阈值\nlet smileCounter = 0;     // 计数器\nlet smileCounterLimit = 10; // 连续检测 10 次以上才确认\nlet isSmiling = false;     // 当前状态\n\nfunction setup() {\n  createCanvas(capturewidth, captureheight);\n  \n  capture = createCapture(VIDEO);\n  capture.size(capturewidth, captureheight);\n  capture.hide();\n  \n  const faceOptions = { withLandmarks: true, withExpressions: true, withDescriptors: false };\n  faceapi = ml5.faceApi(capture, faceOptions, faceReady);\n}\n\nfunction faceReady() {\n  faceapi.detect(gotFaces);\n}\n\nfunction gotFaces(error, result) {\n  if (error) {\n    console.log(error);\n    return;\n  }\n  detections = result;\n  faceapi.detect(gotFaces); // 持续检测\n}\n\nfunction draw() {\n  background(0);\n\n  // 🔥 把视频画出来\n  image(capture, 0, 0, width, height);\n\n  if (detections.length > 0) {\n    let happyLevel = detections[0].expressions.happy;\n\n    // 🔥 根据 happy 值变颜色\n    if (happyLevel > happyThreshold) {\n      fill(255, 0, 0); // 红色\n    } else {\n      fill(255); // 白色\n    }\n    textSize(24);\n    text(\"Happy: \" + nf(happyLevel, 1, 2), 20, 40);\n\n    // 笑容检测逻辑\n    if (happyLevel > happyThreshold) {\n      smileCounter++;\n      smileCounter = constrain(smileCounter, 0, 20);\n    } else {\n      smileCounter--;\n      smileCounter = constrain(smileCounter, 0, 20);\n    }\n\n    if (smileCounter > smileCounterLimit && !isSmiling) {\n      console.log(\"SMILE DETECTED: OPEN PAPER\");\n      isSmiling = true;\n     \n    }\n\n    if (smileCounter == 0 && isSmiling) {\n      console.log(\"NO SMILE DETECTED: CLOSE PAPER\");\n      isSmiling = false;\n     \n    }\n  }\n}\n\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "680ed610f6f1d82bdf060514",
+        "createdAt": "2025-04-28T02:50:08.332Z",
+        "updatedAt": "2025-04-28T02:50:08.332Z",
+        "id": "680ed610f6f1d82bdf060514"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js\"></script>\n    \n    <script src=\"https://cdn.jsdelivr.net/gh/ml5js/Intro-ML-Arts-IMA@ml5-build-10-7-19/ml5_build/ml5.min.js\"></script>\n    \n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "680ed610f6f1d82bdf060513",
+        "createdAt": "2025-04-28T02:50:08.332Z",
+        "updatedAt": "2025-04-28T02:50:08.332Z",
+        "id": "680ed610f6f1d82bdf060513"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "680ed610f6f1d82bdf060515",
+        "createdAt": "2025-04-28T02:50:08.332Z",
+        "updatedAt": "2025-04-28T02:50:08.332Z",
+        "id": "680ed610f6f1d82bdf060515"
+      }
+    ],
+    "createdAt": "2025-04-28T01:12:48.381Z",
+    "updatedAt": "2025-04-28T02:50:08.332Z",
+    "id": "mbE3vWlKP"
+  },
+  {
+    "_id": "9Tawyj742",
+    "name": "Blurred text copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67fabf2660ae793f7fa56fd0",
+          "67fabf2660ae793f7fa56fd1",
+          "67fabf2660ae793f7fa56fd2"
+        ],
+        "fileType": "folder",
+        "_id": "67fabf2660ae793f7fa56fcf",
+        "createdAt": "2022-01-04T06:30:21.391Z",
+        "updatedAt": "2022-01-04T06:30:21.391Z",
+        "id": "67fabf2660ae793f7fa56fcf"
+      },
+      {
+        "name": "sketch.js",
+        "content": "function setup(){\n  createCanvas(640, 360);\n  angleMode(DEGREES);\n  colorMode(HSB, 360, 100, 100, 100);\n  rectMode(CENTER);\n  noStroke();\n\n  textFont('Georgia');\n  textAlign(CENTER, CENTER);\n}\n\nfunction draw(){\n  background(36, 20, 94);\n  textAnimation(\n    'Why', width/6+40, height/2.5, 0, width/6+30\n  );\n  textAnimation(\n    'we have', width/2-25, height/2.5, width/6-15, width/3+15\n  );\n  textAnimation(\n    'a cup of', width*3/4-10, height/2.5, width/3-15, width/2+15\n  );\n  textAnimation(\n    'coffee', width/4+12, height-height/2.5, width/2-15, width*2/3+15\n  );\n  textAnimation(\n    'during', width/2-5, height-height/2.5, width*2/3-15, width*5/6+15\n  );\n  textAnimation(\n    'coding', width*3/4-10, height-height/2.5, width*5/6-30, width\n  );\n}\n\nfunction textAnimation(aText, x, y, aS, aE){\n  let tSize = map(mouseX, aS, aE, 128, 46);\n  let amount = map(mouseX, aS, aE, 48, 0);\n  if(tSize < 46) tSize = 46;\n  if(amount < 0) amount = 0;\n  textSize(tSize);\n  drawingContext.filter = 'blur('+str(amount)+'px)';\n  let alpha = map(mouseX, aS, aE, 0, 100);\n  fill(20, 76, 47, alpha);\n  text(aText, x, y);\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67fabf2660ae793f7fa56fd1",
+        "createdAt": "2022-01-04T06:30:21.391Z",
+        "updatedAt": "2022-01-04T06:30:21.391Z",
+        "id": "67fabf2660ae793f7fa56fd1"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "67fabf2660ae793f7fa56fd0",
+        "createdAt": "2022-01-04T06:30:21.391Z",
+        "updatedAt": "2022-01-04T06:30:21.391Z",
+        "id": "67fabf2660ae793f7fa56fd0"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "67fabf2660ae793f7fa56fd2",
+        "createdAt": "2022-01-04T06:30:21.391Z",
+        "updatedAt": "2022-01-04T06:30:21.391Z",
+        "id": "67fabf2660ae793f7fa56fd2"
+      }
+    ],
+    "createdAt": "2025-04-12T19:29:42.292Z",
+    "updatedAt": "2025-04-12T19:29:42.292Z",
+    "id": "9Tawyj742"
+  },
+  {
+    "_id": "iF3n_GWl_",
+    "name": "bodySegmentation-capturebody",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67ff32404593fb0ff224cfbd",
+          "67ff32404593fb0ff224cfbe"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67ff32404593fb0ff224cfbc",
+        "createdAt": "2025-04-24T18:40:10.357Z",
+        "updatedAt": "2025-04-24T18:40:10.357Z",
+        "id": "67ff32404593fb0ff224cfbc"
+      },
+      {
+        "name": "index.html",
+        "content": "<!--\r\n  👋 Hello! This is an ml5.js example made and shared with ❤️.\r\n  Learn more about the ml5.js project: https://ml5js.org/\r\n  ml5.js license and Code of Conduct: https://github.com/ml5js/ml5-next-gen/blob/main/LICENSE.md\r\n\r\n  This example demonstrates segmenting a person by body parts with ml5.bodySegmentation.\r\n-->\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ml5.js bodySegmentation Parts Example</title>\r\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js\"></script>\r\n    <script src=\"https://unpkg.com/ml5@1/dist/ml5.min.js\"></script>\r\n  </head>\r\n  <body>\r\n    <script src=\"sketch.js\"></script>\r\n  </body>\r\n</html>\r\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ff32404593fb0ff224cfbd",
+        "createdAt": "2025-04-24T18:40:10.357Z",
+        "updatedAt": "2025-04-24T18:40:10.357Z",
+        "id": "67ff32404593fb0ff224cfbd"
+      },
+      {
+        "name": "sketch.js",
+        "content": "\nlet video;\nlet bodySegmentation;\nlet segmentation;\nlet captureInterval = 3000; // 3 seconds between captures\nlet lastCaptureTime = 0;\nlet bodySegments = []; // Array to store body segment images\nlet personPresent = false;\nlet personAbsentFrames = 0; // Counter for consecutive frames with no person\nlet clearThreshold = 30; // Number of frames with no person before clearing\nlet personImage; // Image for the current segmentation\n\nfunction preload() {\n  // Preload the BodyPix model\n  bodySegmentation = ml5.bodySegmentation(\"BodyPix\", {\n    maskType: \"person\",\n    outputStride: 16,\n    segmentationThreshold: 0.5\n  });\n}\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  \n  // Create a video capture\n  video = createCapture(VIDEO);\n  video.size(640, 480);\n  video.hide();\n  \n  // Create an image for person segmentation\n  personImage = createImage(video.width, video.height);\n  \n  // Start the continuous detection process\n  bodySegmentation.detectStart(video, gotResults);\n  \n  // Display loading message\n  textSize(24);\n  textAlign(CENTER, CENTER);\n  fill(255);\n  text(\"Loading model...\", width/2, height/2);\n}\n\n// Window resize handling\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n\n// Callback function for body segmentation\nfunction gotResults(result) {\n  segmentation = result;\n  \n  // Check if a person is present in the frame\n  if (segmentation && segmentation.mask) {\n    // Check if there are any body parts detected by sampling some pixels\n    let hasBodyParts = false;\n    segmentation.mask.loadPixels();\n    \n    for (let i = 0; i < segmentation.mask.pixels.length; i += 4) {\n      // If any non-transparent pixel is found in the mask\n      if (segmentation.mask.pixels[i + 3] < 255) {\n        hasBodyParts = true;\n        break;\n      }\n    }\n    \n    personPresent = hasBodyParts;\n    \n    if (personPresent) {\n      // Reset the counter if a person is detected\n      personAbsentFrames = 0;\n      \n      // Check if it's time to capture a new segment\n      const currentTime = millis();\n      if (currentTime - lastCaptureTime >= captureInterval) {\n        captureBodySegment();\n        lastCaptureTime = currentTime;\n      }\n    } else {\n      // Increment counter for frames with no person\n      personAbsentFrames++;\n      \n      // Clear all segments if no person detected for a certain number of frames\n      if (personAbsentFrames >= clearThreshold) {\n        bodySegments = [];\n        personAbsentFrames = 0;\n      }\n    }\n  }\n}\n\n// Function to extract person from video using mask\nfunction copyPersonPixels(videoImg, maskImg, resultImg) {\n  videoImg.loadPixels();\n  maskImg.loadPixels();\n  resultImg.loadPixels();\n  \n  const totalPixels = resultImg.pixels.length;\n  const imgChannels = 4;\n  \n  for (let i = 0; i < totalPixels; i += imgChannels) {\n    // Check alpha channel of mask\n    let maskAlpha = maskImg.pixels[i + 3];\n    \n    if (maskAlpha === 255) {\n      // If mask pixel is fully opaque (background), make result transparent\n      resultImg.pixels[i + 3] = 0;\n    } else {\n      // If mask pixel is not fully opaque (person), copy video pixel\n      resultImg.pixels[i] = videoImg.pixels[i];\n      resultImg.pixels[i + 1] = videoImg.pixels[i + 1];\n      resultImg.pixels[i + 2] = videoImg.pixels[i + 2];\n      resultImg.pixels[i + 3] = 255; // Fully opaque\n    }\n  }\n  \n  resultImg.updatePixels();\n}\n\n// Capture current body segment and add to collection\nfunction captureBodySegment() {\n  if (!segmentation || !segmentation.mask) return;\n  \n  // Create a copy of the current segmentation\n  let capturedImage = createImage(video.width, video.height);\n  \n  // Extract person from video using mask\n  copyPersonPixels(video, segmentation.mask, capturedImage);\n  \n  // Generate random position within canvas bounds\n  const size = 100; // Size similar to your face snapshot example\n  let x = random(size, width - size);\n  let y = random(size, height - size);\n  \n  // Add to body segments array\n  bodySegments.push({\n    img: capturedImage,\n    x: x,\n    y: y,\n    size: size\n  });\n  \n  console.log(\"Captured body segment. Total captures:\", bodySegments.length);\n}\n\nfunction draw() {\n  // Clear the canvas\n  background(0);\n  \n  // Calculate video position to center it\n  let vidX = (width - video.width) / 2;\n  let vidY = (height - video.height) / 2;\n  \n  // Draw the video feed (mirrored)\n  push();\n  translate(width, 0);\n  scale(-1, 1);\n  let mirroredVidX = -width + vidX;\n  image(video, mirroredVidX, vidY);\n  pop();\n  \n  // Show current live segmentation (person with transparent background)\n  if (segmentation && segmentation.mask) {\n    // Extract person from current video frame\n    copyPersonPixels(video, segmentation.mask, personImage);\n    \n    // Draw the live person with proper mirroring\n    push();\n    translate(width, 0);\n    scale(-1, 1);\n    image(personImage, mirroredVidX, vidY);\n    pop();\n  }\n  \n  // Draw all saved body segments at their random positions\n  for (let segment of bodySegments) {\n    // Apply mirroring when showing the saved segments\n    push();\n    translate(segment.x + segment.size/2, segment.y + segment.size/2);\n    scale(-1, 1);\n    image(segment.img, -segment.size/2, -segment.size/2, segment.size, segment.size);\n    pop();\n  }\n  \n  // Display status information\n  fill(255);\n  textSize(16);\n  textAlign(LEFT, BOTTOM);\n  text(\"Person detected: \" + (personPresent ? \"Yes\" : \"No\"), 20, height - 40);\n  text(\"Captures: \" + bodySegments.length, 20, height - 20);\n  \n  // Instructions\n  fill(255, 255, 200);\n  textSize(18);\n  textAlign(CENTER);\n  text(\"Body segments are captured every 3 seconds\", width/2, 30);\n  text(\"Walk out of frame to clear all images\", width/2, 60);\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67ff32404593fb0ff224cfbe",
+        "createdAt": "2025-04-24T18:40:10.357Z",
+        "updatedAt": "2025-04-24T18:40:10.357Z",
+        "id": "67ff32404593fb0ff224cfbe"
+      }
+    ],
+    "createdAt": "2025-04-16T04:29:52.963Z",
+    "updatedAt": "2025-04-24T18:40:10.357Z",
+    "id": "iF3n_GWl_"
+  },
+  {
+    "_id": "y_v6unHac",
+    "name": "bodySegmentation-capturebody+video",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "68005f4a17556e5f27371293",
+          "68005f4a17556e5f27371294"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "68005f4a17556e5f27371292",
+        "createdAt": "2025-04-25T00:04:09.611Z",
+        "updatedAt": "2025-04-25T00:04:09.611Z",
+        "id": "68005f4a17556e5f27371292"
+      },
+      {
+        "name": "index.html",
+        "content": "<!--\r\n  👋 Hello! This is an ml5.js example made and shared with ❤️.\r\n  Learn more about the ml5.js project: https://ml5js.org/\r\n  ml5.js license and Code of Conduct: https://github.com/ml5js/ml5-next-gen/blob/main/LICENSE.md\r\n\r\n  This example demonstrates segmenting a person by body parts with ml5.bodySegmentation.\r\n-->\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ml5.js bodySegmentation Parts Example</title>\r\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js\"></script>\r\n    <script src=\"https://unpkg.com/ml5@1/dist/ml5.min.js\"></script>\r\n  </head>\r\n  <body>\r\n    <script src=\"sketch.js\"></script>\r\n  </body>\r\n</html>\r\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "68005f4a17556e5f27371293",
+        "createdAt": "2025-04-25T00:04:09.611Z",
+        "updatedAt": "2025-04-25T00:04:09.611Z",
+        "id": "68005f4a17556e5f27371293"
+      },
+      {
+        "name": "sketch.js",
+        "content": "//https://github.com/ml5js/ml5-library/blob/main/docs/reference/bodypix.md\n\nlet video;\nlet bodySegmentation;\nlet segmentation;\nlet captureInterval = 3000; // 3 seconds between captures\nlet lastCaptureTime = 0;\nlet bodySegments = []; // Array to store body segment images\nlet personPresent = false;\nlet personAbsentFrames = 0; // Counter for consecutive frames with no person\nlet clearThreshold = 30; // Number of frames with no person before clearing\nlet personImage; // Image for the current segmentation\nlet scaledWidth, scaledHeight, vidX, vidY;\n\nfunction preload() {\n  // Preload the BodyPix model\n  bodySegmentation = ml5.bodySegmentation(\"BodyPix\", {\n    maskType: \"person\", //detect entire person as one mask\n    outputStride: 16, //Controls the resolution of the internal feature map; lower = higher accuracy, slower speed\n    segmentationThreshold: 0.5, //Confidence threshold (0 to 1)\n  });\n}\n\nfunction calculateVideoScaling() {\n  // 计算视频缩放比例，使其填满窗口\n  let scaleRatio = Math.max(width / video.width, height / video.height);\n  scaledWidth = video.width * scaleRatio;\n  scaledHeight = video.height * scaleRatio;\n\n  // 计算居中位置\n  vidX = (width - scaledWidth) / 2;\n  vidY = (height - scaledHeight) / 2;\n}\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n\n  // Create a video capture\n  video = createCapture(VIDEO);\n  video.size(640, 480);\n  video.hide();\n  calculateVideoScaling();\n\n  // Create an image for person segmentation\n  personImage = createImage(video.width, video.height);\n\n  // Start the continuous detection process\n  bodySegmentation.detectStart(video, gotResults);\n\n  // Display loading message\n  textSize(24);\n  textAlign(CENTER, CENTER);\n  fill(255);\n  text(\"Loading model...\", width / 2, height / 2);\n}\n\n// Window resize handling\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n  calculateVideoScaling();\n}\n\n// Callback function for body segmentation\nfunction gotResults(result) {\n  segmentation = result;\n\n  // Check if a person is present in the frame\n  if (segmentation && segmentation.mask) {\n    // Check if there are any body parts detected by sampling some pixels\n    let hasBodyParts = false;\n    segmentation.mask.loadPixels();\n\n    for (let i = 0; i < segmentation.mask.pixels.length; i += 4) {\n      // If any semi-transparent pixel is found in the mask\n      if (segmentation.mask.pixels[i + 3] < 255) {\n        hasBodyParts = true;\n        break;\n      }\n    }\n\n    personPresent = hasBodyParts;\n\n    if (personPresent) {\n      // Reset the counter if a person is detected\n      personAbsentFrames = 0;\n\n      // Check if it's time to capture a new segment\n      const currentTime = millis();\n      if (currentTime - lastCaptureTime >= captureInterval) {\n        captureBodySegment();\n        lastCaptureTime = currentTime;\n      }\n    } else {\n      // Increment counter for frames with no person\n      personAbsentFrames++;\n\n      // Clear all segments if no person detected for a certain number of frames\n      if (personAbsentFrames >= clearThreshold) {\n        bodySegments = [];\n        personAbsentFrames = 0;\n      }\n    }\n  }\n}\n\n// Function to extract person from video using mask\nfunction copyPersonPixels(videoImg, maskImg, resultImg) {\n  videoImg.loadPixels();\n  maskImg.loadPixels();\n  resultImg.loadPixels();\n\n  const totalPixels = resultImg.pixels.length;\n  const imgChannels = 4;\n\n  for (let i = 0; i < totalPixels; i += imgChannels) {\n    // Check alpha channel of mask\n    let maskAlpha = maskImg.pixels[i + 3];\n\n    if (maskAlpha === 255) {\n      // If mask pixel is fully opaque (background), make result transparent\n      resultImg.pixels[i + 3] = 0;\n    } else {\n      // If mask pixel is not fully opaque (person), copy video pixel\n      resultImg.pixels[i] = videoImg.pixels[i];\n      resultImg.pixels[i + 1] = videoImg.pixels[i + 1];\n      resultImg.pixels[i + 2] = videoImg.pixels[i + 2];\n      resultImg.pixels[i + 3] = 255; // Fully opaque\n    }\n  }\n\n  resultImg.updatePixels();\n}\n\n// Capture current body segment and add to collection\nfunction captureBodySegment() {\n  if (!segmentation || !segmentation.mask) return;\n\n  // Create a copy of the current segmentation\n  let capturedImage = createImage(video.width, video.height);\n\n  // Extract person from video using mask\n  copyPersonPixels(video, segmentation.mask, capturedImage);\n\n  // Generate random position within canvas bounds\n  const size = 300;\n  let x = random(size, width - size);\n  let y = random(size, height - size);\n\n  // Add to body segments array\n  bodySegments.push({\n    img: capturedImage,\n    x: x,\n    y: y,\n    size: size,\n  });\n\n  console.log(\"Captured body segment. Total captures:\", bodySegments.length);\n}\n\nfunction draw() {\n\n  // video background(no mirrored)\n  // image(video, vidX, vidY, scaledWidth, scaledHeight);\n  \n  // mirrored video background\n  push();\n  translate(width, 0); // 把原点移动到右边\n  scale(-1, 1); // 镜像画布\n  image(video, 0, vidY, scaledWidth, scaledHeight); // 在镜像画布上画从 x=0 开始\n  pop();\n\n  // 然后绘制所有保存的身体片段\n  for (let segment of bodySegments) {\n    // 应用镜像效果显示保存的片段\n    push();\n    translate(segment.x + segment.size / 2, segment.y + segment.size / 2);\n    scale(-1, 1);\n    image(\n      segment.img,\n      -segment.size / 2,\n      -segment.size / 2,\n      segment.size,\n      segment.size\n    );\n    pop();\n  }\n\n  // 显示状态信息\n  fill(255);\n  textSize(16);\n  textAlign(LEFT, BOTTOM);\n  text(\"Person detected: \" + (personPresent ? \"Yes\" : \"No\"), 20, height - 40);\n  text(\"Captures: \" + bodySegments.length, 20, height - 20);\n\n  // Instruction Text\n  fill(255, 255, 200);\n  textSize(18);\n  textAlign(CENTER);\n  text(\"Body segments are captured every 3 seconds\", width / 2, 30);\n  text(\"Walk out of frame to clear all images\", width / 2, 60);\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "68005f4a17556e5f27371294",
+        "createdAt": "2025-04-25T00:04:09.611Z",
+        "updatedAt": "2025-04-25T00:04:09.611Z",
+        "id": "68005f4a17556e5f27371294"
+      }
+    ],
+    "createdAt": "2025-04-17T01:54:18.991Z",
+    "updatedAt": "2025-04-25T00:04:09.611Z",
+    "id": "y_v6unHac"
+  },
+  {
+    "_id": "5SStRhKfD",
+    "name": "bodySegmentation-capturebody+video+effect",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "680ad65f80c9ba5d994b8cbb",
+          "680ad65f80c9ba5d994b8cbc"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "680ad65f80c9ba5d994b8cba",
+        "createdAt": "2025-04-25T14:06:43.894Z",
+        "updatedAt": "2025-04-25T14:06:43.894Z",
+        "id": "680ad65f80c9ba5d994b8cba"
+      },
+      {
+        "name": "index.html",
+        "content": "<!--\r\n  👋 Hello! This is an ml5.js example made and shared with ❤️.\r\n  Learn more about the ml5.js project: https://ml5js.org/\r\n  ml5.js license and Code of Conduct: https://github.com/ml5js/ml5-next-gen/blob/main/LICENSE.md\r\n\r\n  This example demonstrates segmenting a person by body parts with ml5.bodySegmentation.\r\n-->\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ml5.js bodySegmentation Parts Example</title>\r\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js\"></script>\r\n    <script src=\"https://unpkg.com/ml5@1/dist/ml5.min.js\"></script>\r\n  </head>\r\n  <body>\r\n    <script src=\"sketch.js\"></script>\r\n  </body>\r\n</html>\r\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "680ad65f80c9ba5d994b8cbb",
+        "createdAt": "2025-04-25T14:06:43.894Z",
+        "updatedAt": "2025-04-25T14:06:43.894Z",
+        "id": "680ad65f80c9ba5d994b8cbb"
+      },
+      {
+        "name": "sketch.js",
+        "content": "//https://github.com/ml5js/ml5-library/blob/main/docs/reference/bodypix.md\n\nlet video;\nlet bodySegmentation;\nlet segmentation;\nlet captureInterval = 3000; // 3 seconds between captures\nlet lastCaptureTime = 0;\nlet bodySegments = []; // Array to store body segment images\nlet personPresent = false;\nlet personAbsentFrames = 0; // Counter for consecutive frames with no person\nlet clearThreshold = 30; // Number of frames with no person before clearing\nlet personImage; // Image for the current segmentation\n\nfunction preload() {\n  // Preload the BodyPix model\n  bodySegmentation = ml5.bodySegmentation(\"BodyPix\", {\n    maskType: \"person\", //detect entire person as one mask\n    outputStride: 16, //Controls the resolution of the internal feature map; lower = higher accuracy, slower speed\n    segmentationThreshold: 0.5 //Confidence threshold (0 to 1)\n  });\n}\n\nfunction setup() {\n  // Create a canvas that covers the full viewport\n  createCanvas(windowWidth, windowHeight);\n  \n  // Create a video capture - keep original resolution for processing\n  video = createCapture(VIDEO);\n  video.size(640, 480);\n  video.hide(); // Hide the default HTML element\n  \n  // Create an image for person segmentation\n  personImage = createImage(video.width, video.height);\n  \n  // Start the continuous detection process\n  bodySegmentation.detectStart(video, gotResults);\n  \n  // Display loading message\n  textSize(24);\n  textAlign(CENTER, CENTER);\n  fill(255);\n  text(\"Loading model...\", width/2, height/2);\n}\n\n// Window resize handling - important for fullscreen\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n\n// Callback function for body segmentation\nfunction gotResults(result) {\n  segmentation = result;\n  \n  // Check if a person is present in the frame\n  if (segmentation && segmentation.mask) {\n    // Check if there are any body parts detected by sampling some pixels\n    let hasBodyParts = false;\n    segmentation.mask.loadPixels();\n    \n    for (let i = 0; i < segmentation.mask.pixels.length; i += 4) {\n      // If any semi-transparent pixel is found in the mask\n      if (segmentation.mask.pixels[i + 3] < 255) {\n        hasBodyParts = true;\n        break;\n      }\n    }\n    \n    personPresent = hasBodyParts;\n    \n    if (personPresent) {\n      // Reset the counter if a person is detected\n      personAbsentFrames = 0;\n      \n      // Check if it's time to capture a new segment\n      const currentTime = millis();\n      if (currentTime - lastCaptureTime >= captureInterval) {\n        captureBodySegment();\n        lastCaptureTime = currentTime;\n      }\n    } else {\n      // Increment counter for frames with no person\n      personAbsentFrames++;\n      \n      // Clear all segments if no person detected for a certain number of frames\n      if (personAbsentFrames >= clearThreshold) {\n        bodySegments = [];\n        personAbsentFrames = 0;\n      }\n    }\n  }\n}\n\n// Function to extract person from video using mask\nfunction copyPersonPixels(videoImg, maskImg, resultImg) {\n  videoImg.loadPixels();\n  maskImg.loadPixels();\n  resultImg.loadPixels();\n  \n  const totalPixels = resultImg.pixels.length;\n  const imgChannels = 4;\n  \n  for (let i = 0; i < totalPixels; i += imgChannels) {\n    // Check alpha channel of mask\n    let maskAlpha = maskImg.pixels[i + 3];\n    \n    if (maskAlpha === 255) {\n      // If mask pixel is fully opaque (background), make result transparent\n      resultImg.pixels[i + 3] = 0;\n    } else {\n      // If mask pixel is not fully opaque (person), copy video pixel\n      resultImg.pixels[i] = videoImg.pixels[i];\n      resultImg.pixels[i + 1] = videoImg.pixels[i + 1];\n      resultImg.pixels[i + 2] = videoImg.pixels[i + 2];\n      resultImg.pixels[i + 3] = 255; // Fully opaque\n    }\n  }\n  \n  resultImg.updatePixels();\n}\n\n// Capture current body segment and add to collection\nfunction captureBodySegment() {\n  if (!segmentation || !segmentation.mask) return;\n  \n  // Create a copy of the current segmentation\n  let capturedImage = createImage(video.width, video.height);\n  \n  // Extract person from video using mask\n  copyPersonPixels(video, segmentation.mask, capturedImage);\n  \n  // Generate random position within canvas bounds\n  const size = min(300, width/4); // Adjust size based on screen width\n  let x = random(size, width - size);\n  let y = random(size, height - size);\n  \n  // Add to body segments array\n  bodySegments.push({\n    img: capturedImage,\n    x: x,\n    y: y,\n    size: size\n  });\n  \n  console.log(\"Captured body segment. Total captures:\", bodySegments.length);\n}\n\nfunction draw() {\n  // Optional: Use a different background color or gradient instead of black\n  // background(10, 10, 30); // Dark blue background\n  \n  // Calculate video scaling to cover the entire canvas\n  let scaleRatio;\n  if (width/height > video.width/video.height) {\n    // If canvas is wider than video\n    scaleRatio = width / video.width;\n  } else {\n    // If canvas is taller than video\n    scaleRatio = height / video.height;\n  }\n  \n  let scaledWidth = video.width * scaleRatio;\n  let scaledHeight = video.height * scaleRatio;\n  \n  // Center the video\n  let vidX = (width - scaledWidth) / 2;\n  let vidY = (height - scaledHeight) / 2;\n  \n  // Draw scaled video (mirrored horizontally for natural interaction)\n  push();\n  translate(width, 0); // Move to right edge\n  scale(-1, 1); // Flip horizontally\n  image(video, vidX, vidY, scaledWidth, scaledHeight);\n  pop();\n  \n  // Draw all saved body segments\n  for (let segment of bodySegments) {\n    // Apply mirroring effect to segments\n    push();\n    translate(segment.x + segment.size/2, segment.y + segment.size/2);\n    scale(-1, 1);\n    image(segment.img, -segment.size/2, -segment.size/2, segment.size, segment.size);\n    pop();\n  }\n  \n  // Display status information\n  fill(255);\n  textSize(16);\n  textAlign(LEFT, BOTTOM);\n  text(\"Person detected: \" + (personPresent ? \"Yes\" : \"No\"), 20, height - 40);\n  text(\"Captures: \" + bodySegments.length, 20, height - 20);\n  \n  // Instructions\n  fill(255, 255, 200);\n  textSize(18);\n  textAlign(CENTER);\n  text(\"Body segments are captured every 3 seconds\", width/2, 30);\n  text(\"Walk out of frame to clear all images\", width/2, 60);\n}\n\n// Add this function to support toggling fullscreen mode with a key press\nfunction keyPressed() {\n  if (key === 'f' || key === 'F') {\n    let fs = fullscreen();\n    fullscreen(!fs);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "680ad65f80c9ba5d994b8cbc",
+        "createdAt": "2025-04-25T14:06:43.894Z",
+        "updatedAt": "2025-04-25T14:06:43.894Z",
+        "id": "680ad65f80c9ba5d994b8cbc"
+      }
+    ],
+    "createdAt": "2025-04-25T00:25:03.880Z",
+    "updatedAt": "2025-04-25T14:06:43.894Z",
+    "id": "5SStRhKfD"
+  },
+  {
+    "_id": "MdNONp1b3",
+    "name": "bodySegmentation-mask-body-parts copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67ff2dbd3191581aa48dc62d",
+          "67ff2dbd3191581aa48dc62e"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67ff2dbd3191581aa48dc62c",
+        "createdAt": "2025-04-24T03:57:20.835Z",
+        "updatedAt": "2025-04-24T03:57:20.835Z",
+        "id": "67ff2dbd3191581aa48dc62c"
+      },
+      {
+        "name": "index.html",
+        "content": "<!--\n  👋 Hello! This is an ml5.js example made and shared with ❤️.\n  Learn more about the ml5.js project: https://ml5js.org/\n  ml5.js license and Code of Conduct: https://github.com/ml5js/ml5-next-gen/blob/main/LICENSE.md\n\n  This example demonstrates segmenting a person by body parts with ml5.bodySegmentation.\n-->\n\n<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>ml5.js bodySegmentation Parts Example</title>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js\"></script>\n    <script src=\"https://unpkg.com/ml5@1/dist/ml5.min.js\"></script>\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ff2dbd3191581aa48dc62d",
+        "createdAt": "2025-04-24T03:57:20.835Z",
+        "updatedAt": "2025-04-24T03:57:20.835Z",
+        "id": "67ff2dbd3191581aa48dc62d"
+      },
+      {
+        "name": "sketch.js",
+        "content": "/*\n * 👋 Hello! This is an ml5.js example made and shared with ❤️.\n * Learn more about the ml5.js project: https://ml5js.org/\n * ml5.js license and Code of Conduct: https://github.com/ml5js/ml5-next-gen/blob/main/LICENSE.md\n *\n * This example demonstrates segmenting a person by body parts with ml5.bodySegmentation.\n \n */\nlet bodySegmentation;\nlet video;\nlet segmentation;\n\nlet options = {\n  maskType: \"person\",\n};\n\nfunction preload() {\n  bodySegmentation = ml5.bodySegmentation(\"BodyPix\", options);\n}\n\nfunction setup() {\n  createCanvas(640, 480);\n  video = createCapture(VIDEO);\n  video.size(640, 480);\n  video.hide();\n\n  bodySegmentation.detectStart(video, gotResults);\n}\n\nfunction draw() {\n  background(0); // 黑色背景\n\n  image(video, 0, 0);\n\n  if (segmentation) {\n    image(segmentation.mask, 0, 0, width, height); // 直接显示分割后的人物图像\n  }\n}\n\nfunction gotResults(result) {\n  segmentation = result;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67ff2dbd3191581aa48dc62e",
+        "createdAt": "2025-04-24T03:57:20.835Z",
+        "updatedAt": "2025-04-24T03:57:20.835Z",
+        "id": "67ff2dbd3191581aa48dc62e"
+      }
+    ],
+    "createdAt": "2025-04-16T04:10:37.671Z",
+    "updatedAt": "2025-04-24T03:57:20.835Z",
+    "id": "MdNONp1b3"
+  },
+  {
     "_id": "XjEFLas0n",
     "name": "building",
     "files": [
@@ -619,6 +910,120 @@
     "updatedAt": "2024-10-07T15:55:34.760Z",
     "createdAt": "2024-10-06T04:49:00.960Z",
     "id": "VOteTUk69"
+  },
+  {
+    "_id": "JtYT0Q4oH",
+    "name": "Comfortable ice",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "680eeceef6f1d82bdf060523",
+          "680eeceef6f1d82bdf060522",
+          "680eeceef6f1d82bdf060524"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "680eeceef6f1d82bdf060525",
+        "createdAt": "2025-04-28T04:04:05.138Z",
+        "updatedAt": "2025-04-28T04:04:05.138Z",
+        "id": "680eeceef6f1d82bdf060525"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// WebSerial变量\nlet port;\nlet writer;\nlet reader;\nlet isConnected = false;\n\n// 摄像头和人脸识别变量\nlet capture;\nlet capturewidth = 640;    \nlet captureheight = 480;\nlet faceapi;\nlet detections = [];\nlet happyThreshold = 0.6; // 设定笑容阈值\nlet smileCounter = 0;     // 计数器\nlet smileCounterLimit = 10; // 连续检测10次以上才确认\nlet isSmiling = false;     // 当前状态\nlet lastCommand = \"\"; // 记录上一次发送的命令\n\n// 等待DOM加载完成后添加事件监听\ndocument.addEventListener('DOMContentLoaded', function() {\n  // 连接按钮事件监听\n  document.getElementById('connectButton').addEventListener('click', connectArduino);\n});\n\n// 连接Arduino函数\nasync function connectArduino() {\n  try {\n    // 请求串口并打开\n    port = await navigator.serial.requestPort();\n    await port.open({ baudRate: 9600 });\n    \n    // 设置写入器\n    const textEncoder = new TextEncoder();\n    writer = port.writable.getWriter();\n    \n    // 更新连接状态\n    isConnected = true;\n    document.getElementById('connectionStatus').textContent = '已连接';\n    document.getElementById('connectButton').textContent = '断开连接';\n    document.getElementById('connectButton').removeEventListener('click', connectArduino);\n    document.getElementById('connectButton').addEventListener('click', disconnectArduino);\n    \n    console.log('Arduino连接成功');\n  } catch (error) {\n    console.error('Arduino连接失败:', error);\n  }\n}\n\n// 断开连接函数\nasync function disconnectArduino() {\n  if (writer) {\n    writer.releaseLock();\n  }\n  if (port) {\n    await port.close();\n  }\n  \n  isConnected = false;\n  document.getElementById('connectionStatus').textContent = '未连接';\n  document.getElementById('connectButton').textContent = '连接Arduino';\n  document.getElementById('connectButton').removeEventListener('click', disconnectArduino);\n  document.getElementById('connectButton').addEventListener('click', connectArduino);\n  \n  console.log('Arduino已断开连接');\n}\n\n// 向Arduino发送命令\nasync function sendCommand(command) {\n  // 避免重复发送相同命令\n  if (command === lastCommand) {\n    return;\n  }\n  \n  if (isConnected && writer) {\n    try {\n      const encoder = new TextEncoder();\n      const data = encoder.encode(command + '\\n'); // 添加换行符\n      await writer.write(data);\n      lastCommand = command;\n      console.log('发送命令:', command);\n    } catch (error) {\n      console.error('发送命令失败:', error);\n    }\n  } else {\n    console.log('Arduino未连接，无法发送命令');\n  }\n}\n\n// p5.js 函数\nfunction setup() {\n  createCanvas(capturewidth, captureheight);\n  \n  capture = createCapture(VIDEO);\n  capture.size(capturewidth, captureheight);\n  capture.hide();\n  \n  const faceOptions = { withLandmarks: true, withExpressions: true, withDescriptors: false };\n  faceapi = ml5.faceApi(capture, faceOptions, faceReady);\n}\n\nfunction faceReady() {\n  faceapi.detect(gotFaces);\n}\n\nfunction gotFaces(error, result) {\n  if (error) {\n    console.log(error);\n    return;\n  }\n  detections = result;\n  faceapi.detect(gotFaces); // 持续检测\n}\n\nfunction draw() {\n  background(0);\n  // 把视频画出来\n  image(capture, 0, 0, width, height);\n  \n  // 显示连接状态\n  textSize(16);\n  noStroke();\n  fill(255);\n  text(\"Arduino state: \" + (isConnected ? \"connected\" : \"not connected\"), 20, height - 20);\n  \n  if (detections.length > 0) {\n    let happyLevel = detections[0].expressions.happy;\n    \n    // 根据happy值变颜色\n    if (happyLevel > happyThreshold) {\n      fill(0, 255, 0); // 绿色\n    } else {\n      fill(255, 0, 0); // 红色\n    }\n    \n    // 显示笑容值\n    textSize(24);\n    text(\"Smile Value: \" + nf(happyLevel, 1, 2), 20, 40);\n    text(\"Smile Counter: \" + smileCounter + \"/\" + smileCounterLimit, 20, 70);\n    text(\"Current State: \" + (isSmiling ? \"smile face (open)\" : \"no smile (close)\"), 20, 100);\n    \n    // 笑容检测逻辑\n    if (happyLevel > happyThreshold) {\n      smileCounter++;\n      smileCounter = constrain(smileCounter, 0, smileCounterLimit + 10);\n    } else {\n      smileCounter--;\n      smileCounter = constrain(smileCounter, 0, smileCounterLimit + 10);\n    }\n    \n    // 状态切换并发送命令\n    if (smileCounter > smileCounterLimit && !isSmiling) {\n      console.log(\"detect smile: open paper\");\n      isSmiling = true;\n      if (isConnected) {\n        sendCommand(\"open\");\n      }\n    }\n    \n    if (smileCounter < smileCounterLimit - 5 && isSmiling) { // 添加一点缓冲，避免频繁切换\n      console.log(\"not detect smile: close paper\");\n      isSmiling = false;\n      if (isConnected) {\n        sendCommand(\"close\");\n      }\n    }\n    \n    // 画出人脸框\n    noFill();\n    stroke(255);\n    strokeWeight(2);\n    const box = detections[0].alignedRect._box;\n    rect(box._x, box._y, box._width, box._height);\n  } else {\n    // 无人脸时显示提示\n    fill(255);\n    textSize(24);\n    text(\"not detect face\", width/2 - 100, height/2);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "680eeceef6f1d82bdf060522",
+        "createdAt": "2025-04-28T04:04:05.138Z",
+        "updatedAt": "2025-04-28T04:04:05.138Z",
+        "id": "680eeceef6f1d82bdf060522"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js\"></script>\n    \n    <script src=\"https://cdn.jsdelivr.net/gh/ml5js/Intro-ML-Arts-IMA@ml5-build-10-7-19/ml5_build/ml5.min.js\"></script>\n    \n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n    <style>\n      body {\n        margin: 0;\n        padding: 20px;\n        font-family: Arial, sans-serif;\n      }\n      button {\n        padding: 10px 15px;\n        margin: 10px 5px;\n        font-size: 16px;\n        cursor: pointer;\n      }\n      .controls {\n        margin-top: 10px;\n      }\n      canvas {\n        border: 1px solid #ccc;\n      }\n    </style>\n  </head>\n  <body>\n   \n    <div class=\"controls\">\n      <button id=\"connectButton\">Connect Arduino</button>\n      <span id=\"connectionStatus\">Not connected</span>\n    </div>\n    <main></main>\n    \n    <script src=\"sketch.js\"></script>\n  </body>\n</html>",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "680eeceef6f1d82bdf060523",
+        "createdAt": "2025-04-28T04:04:05.138Z",
+        "updatedAt": "2025-04-28T04:04:05.138Z",
+        "id": "680eeceef6f1d82bdf060523"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "680eeceef6f1d82bdf060524",
+        "createdAt": "2025-04-28T04:04:05.138Z",
+        "updatedAt": "2025-04-28T04:04:05.138Z",
+        "id": "680eeceef6f1d82bdf060524"
+      }
+    ],
+    "updatedAt": "2025-04-28T04:04:05.138Z",
+    "createdAt": "2025-04-28T03:02:58.811Z",
+    "id": "JtYT0Q4oH"
+  },
+  {
+    "_id": "0-AtRRS86",
+    "name": "Comfortable ice copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "68119d2e12360f3f871f92b7",
+          "68119d2e12360f3f871f92b8",
+          "68119d2e12360f3f871f92b9"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "68119d2e12360f3f871f92b6",
+        "createdAt": "2025-04-30T03:54:04.977Z",
+        "updatedAt": "2025-04-30T03:54:04.977Z",
+        "id": "68119d2e12360f3f871f92b6"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// WebSerial变量\nlet port;\nlet writer;\nlet reader;\nlet isConnected = false;\n\n// 摄像头和人脸识别变量\nlet capture;\nlet capturewidth = 640;    \nlet captureheight = 480;\nlet faceapi;\nlet detections = [];\nlet happyThreshold = 0.6; // 设定笑容阈值\nlet smileCounter = 0;     // 计数器\nlet smileCounterLimit = 10; // 连续检测10次以上才确认\nlet isSmiling = false;     // 当前状态\nlet lastCommand = \"\"; // 记录上一次发送的命令\n\n// 等待DOM加载完成后添加事件监听\ndocument.addEventListener('DOMContentLoaded', function() {\n  // 连接按钮事件监听\n  document.getElementById('connectButton').addEventListener('click', connectArduino);\n});\n\n// 连接Arduino函数\nasync function connectArduino() {\n  try {\n    // 请求串口并打开\n    port = await navigator.serial.requestPort();\n    await port.open({ baudRate: 9600 });\n    \n    // 设置写入器\n    const textEncoder = new TextEncoder();\n    writer = port.writable.getWriter();\n    \n    // 更新连接状态\n    isConnected = true;\n    document.getElementById('connectionStatus').textContent = '已连接';\n    document.getElementById('connectButton').textContent = '断开连接';\n    document.getElementById('connectButton').removeEventListener('click', connectArduino);\n    document.getElementById('connectButton').addEventListener('click', disconnectArduino);\n    \n    console.log('Arduino连接成功');\n  } catch (error) {\n    console.error('Arduino连接失败:', error);\n  }\n}\n\n// 断开连接函数\nasync function disconnectArduino() {\n  if (writer) {\n    writer.releaseLock();\n  }\n  if (port) {\n    await port.close();\n  }\n  \n  isConnected = false;\n  document.getElementById('connectionStatus').textContent = '未连接';\n  document.getElementById('connectButton').textContent = '连接Arduino';\n  document.getElementById('connectButton').removeEventListener('click', disconnectArduino);\n  document.getElementById('connectButton').addEventListener('click', connectArduino);\n  \n  console.log('Arduino已断开连接');\n}\n\n// 向Arduino发送命令\nasync function sendCommand(command) {\n  // 避免重复发送相同命令\n  if (command === lastCommand) {\n    return;\n  }\n  \n  if (isConnected && writer) {\n    try {\n      const encoder = new TextEncoder();\n      const data = encoder.encode(command + '\\n'); // 添加换行符\n      await writer.write(data);\n      lastCommand = command;\n      console.log('发送命令:', command);\n    } catch (error) {\n      console.error('发送命令失败:', error);\n    }\n  } else {\n    console.log('Arduino未连接，无法发送命令');\n  }\n}\n\n// p5.js 函数\nfunction setup() {\n  createCanvas(capturewidth, captureheight);\n  \n  capture = createCapture(VIDEO);\n  capture.size(capturewidth, captureheight);\n  capture.hide();\n  \n  const faceOptions = { withLandmarks: true, withExpressions: true, withDescriptors: false };\n  faceapi = ml5.faceApi(capture, faceOptions, faceReady);\n}\n\nfunction faceReady() {\n  faceapi.detect(gotFaces);\n}\n\nfunction gotFaces(error, result) {\n  if (error) {\n    console.log(error);\n    return;\n  }\n  detections = result;\n  faceapi.detect(gotFaces); // 持续检测\n}\n\nfunction draw() {\n  background(0);\n  // 把视频画出来\n  image(capture, 0, 0, width, height);\n  \n  // 显示连接状态\n  textSize(16);\n  noStroke();\n  fill(255);\n  text(\"Arduino state: \" + (isConnected ? \"connected\" : \"not connected\"), 20, height - 20);\n  \n  if (detections.length > 0) {\n    let happyLevel = detections[0].expressions.happy;\n    \n    // 根据happy值变颜色\n    if (happyLevel > happyThreshold) {\n      fill(0, 255, 0); // 绿色\n    } else {\n      fill(255, 0, 0); // 红色\n    }\n    \n    // 显示笑容值\n    textSize(24);\n    text(\"Smile Value: \" + nf(happyLevel, 1, 2), 20, 40);\n    text(\"Smile Counter: \" + smileCounter + \"/\" + smileCounterLimit, 20, 70);\n    text(\"Current State: \" + (isSmiling ? \"smile face (open)\" : \"no smile (close)\"), 20, 100);\n    \n    // 笑容检测逻辑\n    if (happyLevel > happyThreshold) {\n      smileCounter++;\n      smileCounter = constrain(smileCounter, 0, smileCounterLimit + 10);\n    } else {\n      smileCounter--;\n      smileCounter = constrain(smileCounter, 0, smileCounterLimit + 10);\n    }\n    \n    // 状态切换并发送命令\n    if (smileCounter > smileCounterLimit && !isSmiling) {\n      console.log(\"detect smile: open paper\");\n      isSmiling = true;\n      if (isConnected) {\n        sendCommand(\"open\");\n      }\n    }\n    \n    if (smileCounter < smileCounterLimit - 5 && isSmiling) { // 添加一点缓冲，避免频繁切换\n      console.log(\"not detect smile: close paper\");\n      isSmiling = false;\n      if (isConnected) {\n        sendCommand(\"close\");\n      }\n    }\n    \n    // 画出人脸框\n    noFill();\n    stroke(255);\n    strokeWeight(2);\n    const box = detections[0].alignedRect._box;\n    rect(box._x, box._y, box._width, box._height);\n  } else {\n    // 无人脸时显示提示\n    fill(255);\n    textSize(24);\n    text(\"not detect face\", width/2 - 100, height/2);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "68119d2e12360f3f871f92b8",
+        "createdAt": "2025-04-30T03:54:04.977Z",
+        "updatedAt": "2025-04-30T03:54:04.977Z",
+        "id": "68119d2e12360f3f871f92b8"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js\"></script>\n    \n    <script src=\"https://cdn.jsdelivr.net/gh/ml5js/Intro-ML-Arts-IMA@ml5-build-10-7-19/ml5_build/ml5.min.js\"></script>\n    \n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n    <style>\n      body {\n        margin: 0;\n        padding: 20px;\n        font-family: Arial, sans-serif;\n      }\n      button {\n        padding: 10px 15px;\n        margin: 10px 5px;\n        font-size: 16px;\n        cursor: pointer;\n      }\n      .controls {\n        margin-top: 10px;\n      }\n      canvas {\n        border: 1px solid #ccc;\n      }\n    </style>\n  </head>\n  <body>\n   \n    <div class=\"controls\">\n      <button id=\"connectButton\">Connect Arduino</button>\n      <span id=\"connectionStatus\">Not connected</span>\n    </div>\n    <main></main>\n    \n    <script src=\"sketch.js\"></script>\n  </body>\n</html>",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "68119d2e12360f3f871f92b7",
+        "createdAt": "2025-04-30T03:54:04.977Z",
+        "updatedAt": "2025-04-30T03:54:04.977Z",
+        "id": "68119d2e12360f3f871f92b7"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "68119d2e12360f3f871f92b9",
+        "createdAt": "2025-04-30T03:54:04.977Z",
+        "updatedAt": "2025-04-30T03:54:04.977Z",
+        "id": "68119d2e12360f3f871f92b9"
+      }
+    ],
+    "createdAt": "2025-04-30T03:46:54.645Z",
+    "updatedAt": "2025-04-30T03:54:04.977Z",
+    "id": "0-AtRRS86"
   },
   {
     "_id": "6gWLQ4w-g",
@@ -3635,6 +4040,120 @@
     "id": "tb_OxMmbu"
   },
   {
+    "_id": "myjyAJ-Fb",
+    "name": "ims03-shane",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67f2e2050139cb4fc73a66f7",
+          "67f7480902fb8b6eb0d93f0c",
+          "67f2e2050139cb4fc73a66f6",
+          "67f2e2050139cb4fc73a66f8"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67f2e2050139cb4fc73a66f9",
+        "createdAt": "2025-04-12T19:37:52.442Z",
+        "updatedAt": "2025-04-12T19:37:52.442Z",
+        "id": "67f2e2050139cb4fc73a66f9"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// use one finger to take a snapshot, and adds a poetic line next to it\n//five fingers to clear all images\n//https://docs.ml5js.org/#/\n//created with GPT's support\n\n//github\n//https://xueyu333.github.io/ims-2025-shane/week3_HandposeSnapshot/\nlet video; \nlet faceapi; // ml5 faceApi model\nlet handpose; // ml5 handpose model\nlet detections = []; //store face detection results\nlet predictions = []; //store handpose predictions\nlet lastGesture = null; //track last gesture to avoid duplicates\nlet gestureTimeout = null; //timer to avoid repeating the same gesture too quickly\nlet debugMode = true; // If true, show visual debug info\n\nlet confidenceThreshold = 0.9; //Only use hand detections above this confidence level\n\nlet snapshots = []; //stores face snapshots with their positions and labels\nlet phrases = []; //will be loaded from an external JSON file\n\nlet showInstructions = true; // Control whether to show the hint texts on screen\n\n\n\nfunction preload() {\n  // Load text labels for snapshots from a JSON file\n  loadJSON('phrases.json', data => {\n    phrases = data.phrases;\n    console.log(\"Successfully loaded \" + phrases.length + \" phrases\");\n  });\n}\n\n\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  video = createCapture(VIDEO); \n  video.hide(); \n\n  // Face detection options\n  const faceOptions = {\n    withLandmarks: true, // Include facial landmarks\n    withDescriptors: false // No need for face comparison features\n  };\n  faceapi = ml5.faceApi(video, faceOptions, faceModelReady); //Load faceApi model\n\n  // Load handpose model with flip for mirrored video\n  handpose = ml5.handpose(video, {\n    flipHorizontal: true // Flip video so it mirrors user’s movement\n  }, handposeModelReady);\n\n  // Filter handpose results by confidence\n  handpose.on('predict', results => {\n    predictions = results.filter(hand => hand.handInViewConfidence > confidenceThreshold);\n  });\n\n  textFont('sans-serif'); // Use a clean font\n}\n\n\n\n\nfunction windowResized() {\n  // Resize canvas when window is resized\n  resizeCanvas(windowWidth, windowHeight);\n}\n\nfunction faceModelReady() {\n  console.log(\"FaceAPI model ready!\");\n  faceapi.detect(gotFaces); // Start face detection loop\n}\n\nfunction handposeModelReady() {\n  console.log(\"Handpose model ready!\");\n}\n\nfunction gotFaces(err, result) {\n  if (err) {\n    console.error(err);\n    return;\n  }\n  detections = result; // Update face detection result\n  faceapi.detect(gotFaces); // Loop detection\n}\n\n\n\nfunction draw() {\n  background(0); // Set background black\n\n  // Calculate best-fit video dimensions\n  let vidW, vidH;\n  let videoRatio = video.width / video.height;\n  let windowRatio = windowWidth / windowHeight;\n\n  if (windowRatio > videoRatio) {\n    vidW = windowWidth;\n    vidH = vidW / videoRatio;\n  } else {\n    vidH = windowHeight;\n    vidW = vidH * videoRatio;\n  }\n\n  // Center video within the canvas\n  let xOffset = (windowWidth - vidW) / 2;\n  let yOffset = (windowHeight - vidH) / 2;\n\n  // Draw mirrored webcam video\n  push();\n  translate(windowWidth, 0);\n  scale(-1, 1);\n  image(video, xOffset, yOffset, vidW, vidH);\n  pop();\n\n  checkGestures(); // Check for gestures and respond\n\n\n  // Display all saved snapshots\n  for (let s of snapshots) {\n    image(s.img, s.x, s.y, 100, 100);\n    noStroke();\n    fill(255);\n    textSize(12);\n    textAlign(CENTER);\n    text(s.label, s.x + 50, s.y + 110);\n  }\n\n  // Display gesture and detection status text\n  fill(255);\n  textSize(16);\n  textAlign(LEFT);\n  text(\"Current Gesture: \" + (lastGesture || \"None\"), 10, 30);\n  text(\"Hand Detection: \" + (predictions.length > 0 ? \"Detected\" : \"Not Detected\"), 10, 50);\n\n  \n  \n  // If debug mode is on, draw hand details\n  if (debugMode && predictions.length > 0) {\n    const hand = predictions[0];\n    text(\"Hand Confidence: \" + nf(hand.handInViewConfidence, 1, 2), 10, 70);\n    const { highestFinger, allFingers } = analyzeHand(hand.annotations);\n    text(\"Number of Detected Fingers: \" + allFingers, 10, 90);\n\n    let scaleX = vidW / video.width;\n    let scaleY = vidH / video.height;\n    drawHandLandmarks(hand, xOffset, yOffset, scaleX, scaleY);\n\n    if (highestFinger) {\n      const fingerTip = hand.annotations[highestFinger][3];\n      const tipX = fingerTip[0] * scaleX + xOffset;\n      const tipY = fingerTip[1] * scaleY + yOffset;\n      fill(0, 255, 0);\n      ellipse(tipX, tipY, 15, 15);\n      text(\"Fingertip Position\", tipX + 20, tipY);\n      text(\"Current Fingertip: \" + highestFinger, 10, 110);\n    }\n  }\n\n  \n  \n  //show instruction hints at the top\n  if (showInstructions) {\n    fill(255, 255, 200);\n    textSize(18);\n    textAlign(CENTER);\n    text(\"Point with one finger to capture images, open all five fingers to clear all images\", windowWidth/2, windowHeight - 60);\n    textSize(14);\n    text(\"Keep gesture stable for 1 second to confirm action\", windowWidth/2, windowHeight - 30);\n  }\n}\n\n\nfunction drawHandLandmarks(hand, xOffset, yOffset, scaleX, scaleY) {\n  //show green circle on highest fingertip only (for debug)\n  const { highestFinger } = analyzeHand(hand.annotations);\n  if (highestFinger) {\n    const fingerTip = hand.annotations[highestFinger][3];\n    const x = fingerTip[0] * scaleX + xOffset;\n    const y = fingerTip[1] * scaleY + yOffset;\n    // Visual debug is drawn inside draw()\n  }\n}\n\n\n\n //Analyze finger positions to detect gestures\nfunction analyzeHand(annotations) {\n \n\n  //get the position of the palm base (used as a reference for finger height)\n  const palmBase = annotations.palmBase[0];\n\n  let highestFinger = null;   // Will store the name of the highest raised finger\n  let highestY = palmBase[1]; // Start with palm base Y position\n  let extendedFingers = 0;    // Count how many fingers are extended\n\n  //check the thumb first\n  const thumbTip = annotations.thumb[3];  // Fingertip of thumb\n  const thumbBase = annotations.thumb[0]; // Base of thumb\n\n  // If thumb is far enough from its base, count it as extended\n  if (dist(thumbTip[0], thumbTip[1], thumbBase[0], thumbBase[1]) > 50) {\n    extendedFingers++;\n  }\n\n  //names of the other fingers\n  const fingerNames = [\"indexFinger\", \"middleFinger\", \"ringFinger\", \"pinky\"];\n\n  // Loop through each finger\n  for (let finger of fingerNames) {\n    const fingerTip = annotations[finger][3];  // Fingertip\n    const fingerBase = annotations[finger][0]; // Finger base\n\n    //if tip is at least 25 pixels above base (on Y-axis), it's extended\n    if (fingerTip[1] < fingerBase[1] - 25) {\n      extendedFingers++;\n\n      // Check if it's the highest finger so far\n      if (fingerTip[1] < highestY) {\n        highestY = fingerTip[1];\n        highestFinger = finger;\n      }\n    }\n  }\n\n  // Return both the name of the highest finger and how many fingers are extended\n  return {\n    highestFinger: highestFinger,\n    allFingers: extendedFingers\n  };\n}\n\n\n\n\nfunction checkGestures() {\n  if (predictions.length === 0) return; // No hands detected\n\n  const hand = predictions[0];\n  const { highestFinger, allFingers } = analyzeHand(hand.annotations);\n\n  // Recalculate video transform and offsets for accuracy\n  let videoRatio = video.width / video.height;\n  let windowRatio = windowWidth / windowHeight;\n  let vidW, vidH, xOffset, yOffset;\n\n  if (windowRatio > videoRatio) {\n    vidW = windowWidth;\n    vidH = vidW / videoRatio;\n    xOffset = 0;\n    yOffset = (windowHeight - vidH) / 2;\n  } else {\n    vidH = windowHeight;\n    vidW = vidH * videoRatio;\n    xOffset = (windowWidth - vidW) / 2;\n    yOffset = 0;\n  }\n\n  let scaleX = vidW / video.width;\n  let scaleY = vidH / video.height;\n\n  \n  // If only one finger is extended (pointing)\n  if (highestFinger && allFingers < 3 && lastGesture !== \"pointing\") {\n    lastGesture = \"pointing\";\n    console.log(\"Detected pointing gesture using \" + highestFinger);\n\n    const fingerTip = hand.annotations[highestFinger][3];\n    const tipX = fingerTip[0] * scaleX + xOffset;\n    const tipY = fingerTip[1] * scaleY + yOffset;\n    captureSnapshot(tipX, tipY); // Take snapshot at finger tip position\n    showInstructions = true; // Re-show hint\n\n    clearTimeout(gestureTimeout);\n    gestureTimeout = setTimeout(() => {\n      lastGesture = null;\n    }, 1000);\n  }\n  \n  \n  \n  // If all 5 fingers extended (open palm)\n  else if (allFingers === 5 && lastGesture !== \"open_hand\" && lastGesture !== \"open_hand_confirm\") {\n    lastGesture = \"open_hand_confirm\";\n    console.log(\"Open hand detected, please hold 1s to confirm clear\");\n\n    clearTimeout(gestureTimeout);\n    gestureTimeout = setTimeout(() => {\n      if (lastGesture === \"open_hand_confirm\") {\n        console.log(\"Confirmed, clearing all snapshots\");\n        snapshots = [];\n        showInstructions = false;\n        lastGesture = \"open_hand\";\n\n        setTimeout(() => {\n          lastGesture = null;\n        }, 1000);\n      }\n    }, 1000);\n  }\n  \n  \n  \n  \n  // If no fingers extended (fist)\n  else if (allFingers === 0 && lastGesture !== \"fist\") {\n    lastGesture = \"fist\";\n    console.log(\"Fist gesture detected\");\n    clearTimeout(gestureTimeout);\n    gestureTimeout = setTimeout(() => {\n      lastGesture = null;\n    }, 1000);\n  }\n  // If open palm interrupted\n  else if (allFingers < 5 && lastGesture === \"open_hand_confirm\") {\n    console.log(\"Open palm confirmation canceled\");\n    lastGesture = \"other\";\n    clearTimeout(gestureTimeout);\n    gestureTimeout = setTimeout(() => {\n      lastGesture = null;\n    }, 500);\n  }\n}\n\n\n\n\nfunction captureSnapshot(x, y) {\n  if (detections.length > 0) {\n    let { _x, _y, _width, _height } = detections[0].alignedRect._box;\n\n    // Same transform logic as before\n    let videoRatio = video.width / video.height;\n    let windowRatio = windowWidth / windowHeight;\n    let vidW, vidH, xOffset, yOffset;\n\n    if (windowRatio > videoRatio) {\n      vidW = windowWidth;\n      vidH = vidW / videoRatio;\n      xOffset = 0;\n      yOffset = (windowHeight - vidH) / 2;\n    } else {\n      vidH = windowHeight;\n      vidW = vidH * videoRatio;\n      xOffset = (windowWidth - vidW) / 2;\n      yOffset = 0;\n    }\n\n    let scaleX = vidW / video.width;\n    let scaleY = vidH / video.height;\n\n    // Get face image\n    let faceImg = video.get(_x, _y, _width, _height);\n\n    // Mirror manually\n    let mirroredFace = createImage(_width, _height);\n    mirroredFace.copy(faceImg, 0, 0, _width, _height, 0, 0, _width, _height);\n    mirroredFace.loadPixels();\n    for (let y = 0; y < _height; y++) {\n      for (let x = 0; x < _width / 2; x++) {\n        let i1 = 4 * (y * _width + x);\n        let i2 = 4 * (y * _width + (_width - 1 - x));\n        for (let i = 0; i < 4; i++) {\n          let tmp = mirroredFace.pixels[i1 + i];\n          mirroredFace.pixels[i1 + i] = mirroredFace.pixels[i2 + i];\n          mirroredFace.pixels[i2 + i] = tmp;\n        }\n      }\n    }\n    mirroredFace.updatePixels();\n\n    let label = random(phrases); // Choose a random label\n    let snapX = constrain(x - 30, 0, windowWidth - 60);\n    let snapY = constrain(y - 30, 0, windowHeight - 80);\n\n    snapshots.push({ img: mirroredFace, x: snapX, y: snapY, label });\n    showInstructions = true;\n  }\n}\n\n\n\n\n\n\nfunction keyPressed() {\n  if (key === 's' && detections.length > 0) {\n    captureSnapshot(random(windowWidth - 60), random(windowHeight - 80));\n  }\n  if (key === 'c') {\n    snapshots = [];\n    showInstructions = false;\n  }\n  if (key === 'd') {\n    debugMode = !debugMode;\n  }\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67f2e2050139cb4fc73a66f6",
+        "createdAt": "2025-04-12T19:37:52.442Z",
+        "updatedAt": "2025-04-12T19:37:52.442Z",
+        "id": "67f2e2050139cb4fc73a66f6"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js\"></script>\n    \n<script src=\"https://cdn.jsdelivr.net/npm/ml5@0.12.2/dist/ml5.min.js\"></script>\n\n    \n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67f2e2050139cb4fc73a66f7",
+        "createdAt": "2025-04-12T19:37:52.442Z",
+        "updatedAt": "2025-04-12T19:37:52.442Z",
+        "id": "67f2e2050139cb4fc73a66f7"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67f2e2050139cb4fc73a66f8",
+        "createdAt": "2025-04-12T19:37:52.442Z",
+        "updatedAt": "2025-04-12T19:37:52.442Z",
+        "id": "67f2e2050139cb4fc73a66f8"
+      },
+      {
+        "name": "phrases.json",
+        "content": "{\n    \"phrases\": [\n      \"I am here.\",\n      \"I am in the light.\",\n      \"I am in your gaze.\",\n      \"I am in this memory.\",\n      \"I exist in the void.\",\n      \"I am between moments.\",\n      \"I am in the silent wind.\",\n      \"I float between thoughts.\",\n      \"I wait in the echo.\",\n      \"I drift where the light ends.\",\n      \"I breathe in stillness.\",\n      \"I rest in your shadow.\",\n      \"I exist where no one looks.\",\n      \"I am written in silence.\",\n      \"I live behind the veil.\",\n      \"I stand in quiet time.\",\n      \"I fade with the dusk.\",\n      \"I dwell in unseen corners.\",\n      \"I move through quiet light.\",\n      \"I wait where no words reach.\",\n      \"I echo through forgotten rooms.\",\n      \"I live where sound dissolves.\",\n      \"I hold still beneath the weight of thought.\",\n      \"I belong to the quiet.\",\n      \"I unravel in the hush.\",\n      \"I breathe between the falling hours.\",\n      \"I remain in what is left unsaid.\"\n    ]\n  }\n  \n  ",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67f7480902fb8b6eb0d93f0c",
+        "createdAt": "2025-04-12T19:37:52.442Z",
+        "updatedAt": "2025-04-12T19:37:52.442Z",
+        "id": "67f7480902fb8b6eb0d93f0c"
+      }
+    ],
+    "updatedAt": "2025-04-12T19:37:52.442Z",
+    "createdAt": "2025-04-06T20:20:29.722Z",
+    "id": "myjyAJ-Fb"
+  },
+  {
+    "_id": "R27dgt-Wo",
+    "name": "ims05-shane",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "680ad17f80c9ba5d994b8cb8",
+          "680ad17f80c9ba5d994b8cb9"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "680ad17f80c9ba5d994b8cb7",
+        "createdAt": "2025-04-25T13:43:06.622Z",
+        "updatedAt": "2025-04-25T13:43:06.622Z",
+        "id": "680ad17f80c9ba5d994b8cb7"
+      },
+      {
+        "name": "index.html",
+        "content": "<!--\r\n  👋 Hello! This is an ml5.js example made and shared with ❤️.\r\n  Learn more about the ml5.js project: https://ml5js.org/\r\n  ml5.js license and Code of Conduct: https://github.com/ml5js/ml5-next-gen/blob/main/LICENSE.md\r\n\r\n  This example demonstrates segmenting a person by body parts with ml5.bodySegmentation.\r\n-->\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ml5.js bodySegmentation Parts Example</title>\r\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js\"></script>\r\n    <script src=\"https://unpkg.com/ml5@1/dist/ml5.min.js\"></script>\r\n  </head>\r\n  <body>\r\n    <script src=\"sketch.js\"></script>\r\n  </body>\r\n</html>\r\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "680ad17f80c9ba5d994b8cb8",
+        "createdAt": "2025-04-25T13:43:06.622Z",
+        "updatedAt": "2025-04-25T13:43:06.622Z",
+        "id": "680ad17f80c9ba5d994b8cb8"
+      },
+      {
+        "name": "sketch.js",
+        "content": "//https://github.com/ml5js/ml5-library/blob/main/docs/reference/bodypix.md\n\nlet video;\nlet bodySegmentation;\nlet segmentation;\nlet captureInterval = 3000; // 3 seconds between captures\nlet lastCaptureTime = 0;\nlet bodySegments = []; // Array to store body segment images\nlet personPresent = false;\nlet personAbsentFrames = 0; // Counter for consecutive frames with no person\nlet clearThreshold = 30; // Number of frames with no person before clearing\nlet personImage; // Image for the current segmentation\n\nfunction preload() {\n  // Preload the BodyPix model\n  bodySegmentation = ml5.bodySegmentation(\"BodyPix\", {\n    maskType: \"person\", //detect entire person as one mask\n    outputStride: 16, //Controls the resolution of the internal feature map; lower = higher accuracy, slower speed\n    segmentationThreshold: 0.5 //Confidence threshold (0 to 1)\n  });\n}\n\nfunction setup() {\n  // Create a canvas that covers the full viewport\n  createCanvas(windowWidth, windowHeight);\n  \n  // Create a video capture - keep original resolution for processing\n  video = createCapture(VIDEO);\n  video.size(640, 480);\n  video.hide(); // Hide the default HTML element\n  \n  // Create an image for person segmentation\n  personImage = createImage(video.width, video.height);\n  \n  // Start the continuous detection process\n  bodySegmentation.detectStart(video, gotResults);\n  \n  // Display loading message\n  textSize(24);\n  textAlign(CENTER, CENTER);\n  fill(255);\n  text(\"Loading model...\", width/2, height/2);\n}\n\n// Window resize handling - important for fullscreen\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n\n// Callback function for body segmentation\nfunction gotResults(result) {\n  segmentation = result;\n  \n  // Check if a person is present in the frame\n  if (segmentation && segmentation.mask) {\n    // Check if there are any body parts detected by sampling some pixels\n    let hasBodyParts = false;\n    segmentation.mask.loadPixels();\n    \n    for (let i = 0; i < segmentation.mask.pixels.length; i += 4) {\n      // If any semi-transparent pixel is found in the mask\n      if (segmentation.mask.pixels[i + 3] < 255) {\n        hasBodyParts = true;\n        break;\n      }\n    }\n    \n    personPresent = hasBodyParts;\n    \n    if (personPresent) {\n      // Reset the counter if a person is detected\n      personAbsentFrames = 0;\n      \n      // Check if it's time to capture a new segment\n      const currentTime = millis();\n      if (currentTime - lastCaptureTime >= captureInterval) {\n        captureBodySegment();\n        lastCaptureTime = currentTime;\n      }\n    } else {\n      // Increment counter for frames with no person\n      personAbsentFrames++;\n      \n      // Clear all segments if no person detected for a certain number of frames\n      if (personAbsentFrames >= clearThreshold) {\n        bodySegments = [];\n        personAbsentFrames = 0;\n      }\n    }\n  }\n}\n\n// Function to extract person from video using mask\nfunction copyPersonPixels(videoImg, maskImg, resultImg) {\n  videoImg.loadPixels();\n  maskImg.loadPixels();\n  resultImg.loadPixels();\n  \n  const totalPixels = resultImg.pixels.length;\n  const imgChannels = 4;\n  \n  for (let i = 0; i < totalPixels; i += imgChannels) {\n    // Check alpha channel of mask\n    let maskAlpha = maskImg.pixels[i + 3];\n    \n    if (maskAlpha === 255) {\n      // If mask pixel is fully opaque (background), make result transparent\n      resultImg.pixels[i + 3] = 0;\n    } else {\n      // If mask pixel is not fully opaque (person), copy video pixel\n      resultImg.pixels[i] = videoImg.pixels[i];\n      resultImg.pixels[i + 1] = videoImg.pixels[i + 1];\n      resultImg.pixels[i + 2] = videoImg.pixels[i + 2];\n      resultImg.pixels[i + 3] = 255; // Fully opaque\n    }\n  }\n  \n  resultImg.updatePixels();\n}\n\n// Capture current body segment and add to collection\nfunction captureBodySegment() {\n  if (!segmentation || !segmentation.mask) return;\n  \n  // Create a copy of the current segmentation\n  let capturedImage = createImage(video.width, video.height);\n  \n  // Extract person from video using mask\n  copyPersonPixels(video, segmentation.mask, capturedImage);\n  \n  // Generate random position within canvas bounds\n  const size = min(300, width/4); // Adjust size based on screen width\n  let x = random(size, width - size);\n  let y = random(size, height - size);\n  \n  // Add to body segments array\n  bodySegments.push({\n    img: capturedImage,\n    x: x,\n    y: y,\n    size: size\n  });\n  \n  console.log(\"Captured body segment. Total captures:\", bodySegments.length);\n}\n\nfunction draw() {\n  // Optional: Use a different background color or gradient instead of black\n  // background(10, 10, 30); // Dark blue background\n  \n  // Calculate video scaling to cover the entire canvas\n  let scaleRatio;\n  if (width/height > video.width/video.height) {\n    // If canvas is wider than video\n    scaleRatio = width / video.width;\n  } else {\n    // If canvas is taller than video\n    scaleRatio = height / video.height;\n  }\n  \n  let scaledWidth = video.width * scaleRatio;\n  let scaledHeight = video.height * scaleRatio;\n  \n  // Center the video\n  let vidX = (width - scaledWidth) / 2;\n  let vidY = (height - scaledHeight) / 2;\n  \n  // Draw scaled video (mirrored horizontally for natural interaction)\n  push();\n  translate(width, 0); // Move to right edge\n  scale(-1, 1); // Flip horizontally\n  image(video, vidX, vidY, scaledWidth, scaledHeight);\n  pop();\n  \n  // Draw all saved body segments\n  for (let segment of bodySegments) {\n    // Apply mirroring effect to segments\n    push();\n    translate(segment.x + segment.size/2, segment.y + segment.size/2);\n    scale(-1, 1);\n    image(segment.img, -segment.size/2, -segment.size/2, segment.size, segment.size);\n    pop();\n  }\n  \n  // Display status information\n  fill(255);\n  textSize(16);\n  textAlign(LEFT, BOTTOM);\n  text(\"Person detected: \" + (personPresent ? \"Yes\" : \"No\"), 20, height - 40);\n  text(\"Captures: \" + bodySegments.length, 20, height - 20);\n  \n  // Instructions\n  fill(255, 255, 200);\n  textSize(18);\n  textAlign(CENTER);\n  text(\"Body segments are captured every 3 seconds\", width/2, 30);\n  text(\"Walk out of frame to clear all images\", width/2, 60);\n}\n\n// Add this function to support toggling fullscreen mode with a key press\nfunction keyPressed() {\n  if (key === 'f' || key === 'F') {\n    let fs = fullscreen();\n    fullscreen(!fs);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "680ad17f80c9ba5d994b8cb9",
+        "createdAt": "2025-04-25T13:43:06.622Z",
+        "updatedAt": "2025-04-25T13:43:06.622Z",
+        "id": "680ad17f80c9ba5d994b8cb9"
+      }
+    ],
+    "createdAt": "2025-04-25T00:04:15.908Z",
+    "updatedAt": "2025-04-25T13:43:06.622Z",
+    "id": "R27dgt-Wo"
+  },
+  {
     "_id": "R14zUc9Tw",
     "name": "kinetic sculpture_W2_WebGL workshop_texture 3_starter copy",
     "files": [
@@ -4747,6 +5266,165 @@
     "createdAt": "2024-10-13T16:21:35.180Z",
     "updatedAt": "2024-10-13T20:57:23.941Z",
     "id": "RZJ7Y1LAO"
+  },
+  {
+    "_id": "obaoseZPU",
+    "name": "pop art",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "680aef6780c9ba5d994b8cbe",
+          "680aef6780c9ba5d994b8cbf"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "680aef6780c9ba5d994b8cbd",
+        "createdAt": "2025-04-25T03:23:29.060Z",
+        "updatedAt": "2025-04-25T03:23:29.060Z",
+        "id": "680aef6780c9ba5d994b8cbd"
+      },
+      {
+        "name": "index.html",
+        "content": "<!--\r\n  👋 Hello! This is an ml5.js example made and shared with ❤️.\r\n  Learn more about the ml5.js project: https://ml5js.org/\r\n  ml5.js license and Code of Conduct: https://github.com/ml5js/ml5-next-gen/blob/main/LICENSE.md\r\n\r\n  This example demonstrates segmenting a person by body parts with ml5.bodySegmentation.\r\n-->\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>ml5.js bodySegmentation Parts Example</title>\r\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js\"></script>\r\n    <script src=\"https://unpkg.com/ml5@1/dist/ml5.min.js\"></script>\r\n  </head>\r\n  <body>\r\n    <script src=\"sketch.js\"></script>\r\n  </body>\r\n</html>\r\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "680aef6780c9ba5d994b8cbe",
+        "createdAt": "2025-04-25T03:23:29.060Z",
+        "updatedAt": "2025-04-25T03:23:29.060Z",
+        "id": "680aef6780c9ba5d994b8cbe"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let video;\nlet videoColors = [];\n\nfunction setup() {\n  createCanvas(600, 600);\n  video = createCapture(VIDEO);\n  video.size(640, 480);\n  video.hide(); // 不显示默认的视频\n\n  // 初始化颜色滤镜\n  for (let i = 0; i < 4; i++) {\n    videoColors[i] = color(random(255), random(255), random(255));\n  }\n}\n\nfunction draw() {\n  background(255);\n\n  let w = width / 2;\n  let h = height / 2;\n\n  // 画四个格子，每个用不同颜色 tint\n  for (let i = 0; i < 4; i++) {\n    tint(videoColors[i]);\n    let x = (i % 2) * w;\n    let y = int(i / 2) * h;\n    image(video, x, y, w, h);\n  }\n}\n\nfunction mousePressed() {\n  // 点击后重新随机颜色\n  for (let i = 0; i < 4; i++) {\n    videoColors[i] = color(random(255), random(255), random(255));\n    console.log(`格子 ${i + 1} 的颜色是：`, videoColors[i].toString());\n  }\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "680aef6780c9ba5d994b8cbf",
+        "createdAt": "2025-04-25T03:23:29.060Z",
+        "updatedAt": "2025-04-25T03:23:29.060Z",
+        "id": "680aef6780c9ba5d994b8cbf"
+      }
+    ],
+    "createdAt": "2025-04-25T02:11:51.125Z",
+    "updatedAt": "2025-04-25T03:23:29.060Z",
+    "id": "obaoseZPU"
+  },
+  {
+    "_id": "3F8uYSpLP",
+    "name": "rain",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67fbedbf4aad1c0614dd5bcc",
+          "67fbedbf4aad1c0614dd5bcb",
+          "67fbedbf4aad1c0614dd5bcd"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67fbedbf4aad1c0614dd5bce",
+        "createdAt": "2025-04-13T17:40:09.576Z",
+        "updatedAt": "2025-04-13T17:40:09.576Z",
+        "id": "67fbedbf4aad1c0614dd5bce"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let sentence = \"The rain falls gently on the ground\\nNature's music, a calming sound\";\nlet letters = [];\nlet finalFontSize = 32;\nlet dropHeight = 150;\n\nfunction setup() {\n  createCanvas(900, 400);\n  textFont('Georgia');\n  textAlign(LEFT, BASELINE); // Using BASELINE alignment\n  fill(0);\n  \n  // Calculate positions based on the final font size\n  textSize(finalFontSize);\n  let lines = sentence.split('\\n');\n  let lineHeight = finalFontSize * 1.5;\n  // Calculate center position for text block\n  let startY = height / 2 - ((lines.length - 1) * lineHeight) / 2 + finalFontSize/2;\n  \n  // Process each line\n  for (let i = 0; i < lines.length; i++) {\n    let line = lines[i];\n    let lineWidth = textWidth(line);\n    let startX = (width - lineWidth) / 2;\n    // Each line has the same baseline y-coordinate for all letters\n    let y = startY + i * lineHeight;\n    \n    // Create letter objects for this line\n    for (let j = 0; j < line.length; j++) {\n      let ch = line[j];\n      let chWidth = textWidth(ch);\n      \n      letters.push({\n        char: ch,\n        x: startX,\n        y: y - dropHeight - random(50, 200),\n        targetX: startX,\n        targetY: y,\n        size: finalFontSize, // Use consistent size\n        speed: random(1, 4),\n        settled: false,\n        // Add line and position information for debugging\n        line: i,\n        position: j\n      });\n      \n      startX += chWidth;\n    }\n  }\n}\n\nfunction draw() {\n  background(230, 235, 245);\n  \n  // Draw guidelines for debugging (optional)\n  // stroke(200, 0, 0, 50);\n  // line(0, letters[0].targetY, width, letters[0].targetY);\n  // if (letters.length > 20) {\n  //   line(0, letters[20].targetY, width, letters[20].targetY);\n  // }\n  \n  // Set consistent size for drawing\n  textSize(finalFontSize);\n  \n  // Draw each letter\n  for (let letter of letters) {\n    if (!letter.settled) {\n      // Falling process - each letter falls straight down\n      letter.y += letter.speed;\n      \n      // When letter reaches or exceeds its target Y position\n      if (letter.y >= letter.targetY) {\n        // Snap directly to target position\n        letter.y = letter.targetY;\n        letter.settled = true;\n      }\n    }\n    \n    // Always use the final font size for consistent display\n    text(letter.char, letter.x, letter.y);\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67fbedbf4aad1c0614dd5bcb",
+        "createdAt": "2025-04-13T17:40:09.576Z",
+        "updatedAt": "2025-04-13T17:40:09.576Z",
+        "id": "67fbedbf4aad1c0614dd5bcb"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67fbedbf4aad1c0614dd5bcc",
+        "createdAt": "2025-04-13T17:40:09.576Z",
+        "updatedAt": "2025-04-13T17:40:09.576Z",
+        "id": "67fbedbf4aad1c0614dd5bcc"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67fbedbf4aad1c0614dd5bcd",
+        "createdAt": "2025-04-13T17:40:09.576Z",
+        "updatedAt": "2025-04-13T17:40:09.576Z",
+        "id": "67fbedbf4aad1c0614dd5bcd"
+      }
+    ],
+    "updatedAt": "2025-04-13T17:40:09.576Z",
+    "createdAt": "2025-04-13T17:00:49.686Z",
+    "id": "3F8uYSpLP"
+  },
+  {
+    "_id": "N8jHkXckQ",
+    "name": "rain copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67fbf6fb86664b7035df624d",
+          "67fbf6fb86664b7035df624e",
+          "67fbf6fb86664b7035df624f"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67fbf6fb86664b7035df624c",
+        "createdAt": "2025-04-14T01:22:57.015Z",
+        "updatedAt": "2025-04-14T01:22:57.015Z",
+        "id": "67fbf6fb86664b7035df624c"
+      },
+      {
+        "name": "sketch.js",
+        "content": "//Prompt (for GPT+Claude):\n\n// Have the text fall from the top of the screen, with each word or character in random sizes. As they land in the center of the screen, their sizes become uniform. Each line of the poem should align horizontally, and all lines should appear in the correct order to form a complete poem.\n\n\n\nlet sentence = \"The rain falls gently on the ground\\nNature's music, a calming sound\";\nlet letters = [];\nlet finalFontSize = 32;\nlet dropHeight = 300;\nlet transitionPoint = 50; // 距离目标位置多远开始过渡字体大小\n\nfunction setup() {\n  createCanvas(900, 900);\n  textFont('Georgia');\n  textAlign(LEFT, BASELINE); // 使用BASELINE对齐\n  fill(0);\n  \n  // 计算基于最终字体大小的位置\n  textSize(finalFontSize);\n  let lines = sentence.split('\\n');\n  let lineHeight = finalFontSize * 1.5;\n  // 计算文本块的中心位置\n  let startY = height / 2 - ((lines.length - 1) * lineHeight) / 2 + finalFontSize/2;\n  \n  // 处理每一行\n  for (let i = 0; i < lines.length; i++) {\n    let line = lines[i];\n    let lineWidth = textWidth(line);\n    let startX = (width - lineWidth) / 2;\n    // 每一行所有字母共享相同的基线y坐标\n    let y = startY + i * lineHeight;\n    \n    // 为这一行创建字母对象\n    for (let j = 0; j < line.length; j++) {\n      let ch = line[j];\n      let chWidth = textWidth(ch);\n      \n      letters.push({\n        char: ch,\n        x: startX,\n        y: y - dropHeight - random(50, 200),\n        targetX: startX,\n        targetY: y,\n        size: random(10, 40), // 随机初始大小\n        targetSize: finalFontSize,\n        speed: random(1, 4),\n        settled: false,\n        transitioning: false // 新增状态，标记是否正在过渡大小\n      });\n      \n      startX += chWidth;\n    }\n  }\n}\n\nfunction draw() {\n  background(230, 235, 245);\n  \n  // 绘制每个字母\n  for (let letter of letters) {\n    // 设置当前字母的大小\n    textSize(letter.size);\n    \n    if (!letter.settled) {\n      // 下落过程 - 每个字母垂直下落\n      letter.y += letter.speed;\n      \n      // 检查是否应该开始大小过渡\n      if (!letter.transitioning && letter.targetY - letter.y < transitionPoint) {\n        letter.transitioning = true;\n      }\n      \n      // 如果正在过渡大小，逐渐将大小调整为目标大小\n      if (letter.transitioning) {\n        letter.size = lerp(letter.size, letter.targetSize, 0.1);\n      }\n      \n      // 当字母到达或超过其目标Y位置时\n      if (letter.y >= letter.targetY) {\n        // 直接定位到目标位置\n        letter.y = letter.targetY;\n        letter.size = letter.targetSize; // 确保大小准确\n        letter.settled = true;\n      }\n    }\n    \n    // 绘制字母\n    text(letter.char, letter.x, letter.y);\n  }\n  \n  // 检查动画是否完成（可选）\n  // let allSettled = letters.every(l => l.settled);\n  // if (allSettled) {\n  //   // 可以在这里添加动画完成后的效果\n  // }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67fbf6fb86664b7035df624e",
+        "createdAt": "2025-04-14T01:22:57.015Z",
+        "updatedAt": "2025-04-14T01:22:57.015Z",
+        "id": "67fbf6fb86664b7035df624e"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67fbf6fb86664b7035df624d",
+        "createdAt": "2025-04-14T01:22:57.015Z",
+        "updatedAt": "2025-04-14T01:22:57.015Z",
+        "id": "67fbf6fb86664b7035df624d"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67fbf6fb86664b7035df624f",
+        "createdAt": "2025-04-14T01:22:57.015Z",
+        "updatedAt": "2025-04-14T01:22:57.015Z",
+        "id": "67fbf6fb86664b7035df624f"
+      }
+    ],
+    "createdAt": "2025-04-13T17:40:11.356Z",
+    "updatedAt": "2025-04-14T01:22:57.015Z",
+    "id": "N8jHkXckQ"
   },
   {
     "_id": "tAwUeSyxM",

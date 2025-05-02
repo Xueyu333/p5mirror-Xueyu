@@ -112,7 +112,7 @@ Generated listing of editor.p5js projects
 #   and create markdown listing files
 #   only projects updated since last mirror are downloaded
 #
-bin/mirror.sh --user p5name
+bin/mirror.sh --user Xueyu333
 
 # full update, download all projects
 #

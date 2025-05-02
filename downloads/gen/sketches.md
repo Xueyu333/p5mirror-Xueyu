@@ -1,14 +1,22 @@
 # Sketches for Xueyu333
-176 sketches  
+189 sketches  
 [09 emotion recognition in real time 01](https://editor.p5js.org/Xueyu333/sketches/Qj9O7hDdn)<!-- 2025-02-05T01:32:53.909Z -->  
 [09 emotion recognition in real time 02](https://editor.p5js.org/Xueyu333/sketches/0pnAXUN1p)<!-- 2025-02-05T02:00:17.294Z -->  
 [09 emotion recognition in real time 02 copy](https://editor.p5js.org/Xueyu333/sketches/2cd2Nl9vy)<!-- 2025-02-05T05:50:45.617Z -->  
 [09 emotion recognition in real time 03](https://editor.p5js.org/Xueyu333/sketches/SB-Nz11SO)<!-- 2025-02-05T04:43:44.733Z -->  
+[09 emotion recognition in real time copy](https://editor.p5js.org/Xueyu333/sketches/mbE3vWlKP)<!-- 2025-04-28T02:50:08.332Z -->  
+[Blurred text copy](https://editor.p5js.org/Xueyu333/sketches/9Tawyj742)<!-- 2025-04-12T19:29:42.292Z -->  
+[bodySegmentation-capturebody](https://editor.p5js.org/Xueyu333/sketches/iF3n_GWl_)<!-- 2025-04-24T18:40:10.357Z -->  
+[bodySegmentation-capturebody+video](https://editor.p5js.org/Xueyu333/sketches/y_v6unHac)<!-- 2025-04-25T00:04:09.611Z -->  
+[bodySegmentation-capturebody+video+effect](https://editor.p5js.org/Xueyu333/sketches/5SStRhKfD)<!-- 2025-04-25T14:06:43.894Z -->  
+[bodySegmentation-mask-body-parts copy](https://editor.p5js.org/Xueyu333/sketches/MdNONp1b3)<!-- 2025-04-24T03:57:20.835Z -->  
 [building](https://editor.p5js.org/Xueyu333/sketches/XjEFLas0n)<!-- 2024-11-07T05:17:34.698Z -->  
 [Cabana\! - Worley Noise Port copy](https://editor.p5js.org/Xueyu333/sketches/_dcc8jR01)<!-- 2025-03-14T14:57:15.422Z -->  
 [cats at the club copy](https://editor.p5js.org/Xueyu333/sketches/urv1BoeTk)<!-- 2024-11-07T05:16:15.227Z -->  
 [code your way(week2)](https://editor.p5js.org/Xueyu333/sketches/CEuRKwxzd)<!-- 2025-02-03T15:12:56.069Z -->  
 [colorofme](https://editor.p5js.org/Xueyu333/sketches/VOteTUk69)<!-- 2024-10-07T15:55:34.760Z -->  
+[Comfortable ice](https://editor.p5js.org/Xueyu333/sketches/JtYT0Q4oH)<!-- 2025-04-28T04:04:05.138Z -->  
+[Comfortable ice copy](https://editor.p5js.org/Xueyu333/sketches/0-AtRRS86)<!-- 2025-04-30T03:54:04.977Z -->  
 [createcanvas](https://editor.p5js.org/Xueyu333/sketches/6gWLQ4w-g)<!-- 2024-09-08T04:52:47.531Z -->  
 [CT117\_Interactive Dandelion (ml5.js faceMesh) copy](https://editor.p5js.org/Xueyu333/sketches/lkTAkRaSm)<!-- 2024-11-07T05:50:08.236Z -->  
 [CYW • WK1 Preloader • Encode 1 copy](https://editor.p5js.org/Xueyu333/sketches/BuBrHIJsp)<!-- 2025-02-07T00:50:25.416Z -->  
@@ -56,6 +64,8 @@
 [ims\_week1](https://editor.p5js.org/Xueyu333/sketches/h5lkCnu3T)<!-- 2025-03-21T14:47:19.446Z -->  
 [ims02-shane](https://editor.p5js.org/Xueyu333/sketches/56koQQZER)<!-- 2025-04-04T13:59:44.274Z -->  
 [ims02-shane copy](https://editor.p5js.org/Xueyu333/sketches/tb_OxMmbu)<!-- 2025-04-04T00:31:36.692Z -->  
+[ims03-shane](https://editor.p5js.org/Xueyu333/sketches/myjyAJ-Fb)<!-- 2025-04-12T19:37:52.442Z -->  
+[ims05-shane](https://editor.p5js.org/Xueyu333/sketches/R27dgt-Wo)<!-- 2025-04-25T13:43:06.622Z -->  
 [kinetic sculpture\_W2\_WebGL workshop\_texture 3\_starter copy](https://editor.p5js.org/Xueyu333/sketches/R14zUc9Tw)<!-- 2025-02-05T18:49:53.578Z -->  
 [lab01](https://editor.p5js.org/Xueyu333/sketches/7tlzMUlJg)<!-- 2024-10-09T03:53:06.945Z -->  
 [lab02](https://editor.p5js.org/Xueyu333/sketches/gEDJqd0rx)<!-- 2024-10-09T04:32:55.665Z -->  
@@ -72,6 +82,9 @@
 [play mp3](https://editor.p5js.org/Xueyu333/sketches/-sNqAGizO)<!-- 2024-10-13T16:18:55.429Z -->  
 [play mp3-2](https://editor.p5js.org/Xueyu333/sketches/E44aAFxGz)<!-- 2024-10-13T16:21:05.966Z -->  
 [play mp3-2 copy](https://editor.p5js.org/Xueyu333/sketches/RZJ7Y1LAO)<!-- 2024-10-13T20:57:23.941Z -->  
+[pop art](https://editor.p5js.org/Xueyu333/sketches/obaoseZPU)<!-- 2025-04-25T03:23:29.060Z -->  
+[rain](https://editor.p5js.org/Xueyu333/sketches/3F8uYSpLP)<!-- 2025-04-13T17:40:09.576Z -->  
+[rain copy](https://editor.p5js.org/Xueyu333/sketches/N8jHkXckQ)<!-- 2025-04-14T01:22:57.015Z -->  
 [s s s](https://editor.p5js.org/Xueyu333/sketches/tAwUeSyxM)<!-- 2024-12-04T17:18:53.861Z -->  
 [s s s copy](https://editor.p5js.org/Xueyu333/sketches/KDuj3uz72)<!-- 2024-12-05T05:20:20.757Z -->  
 [s s s copy2](https://editor.p5js.org/Xueyu333/sketches/ITNT5-YkW)<!-- 2024-12-05T06:07:35.047Z -->  

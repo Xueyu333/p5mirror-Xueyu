@@ -1,5 +1,18 @@
 # Sketches for Xueyu333
-176 sketches  
+189 sketches  
+[Comfortable ice copy](https://editor.p5js.org/Xueyu333/sketches/0-AtRRS86)<!-- 2025-04-30T03:54:04.977Z -->  
+[Comfortable ice](https://editor.p5js.org/Xueyu333/sketches/JtYT0Q4oH)<!-- 2025-04-28T04:04:05.138Z -->  
+[09 emotion recognition in real time copy](https://editor.p5js.org/Xueyu333/sketches/mbE3vWlKP)<!-- 2025-04-28T02:50:08.332Z -->  
+[bodySegmentation-capturebody+video+effect](https://editor.p5js.org/Xueyu333/sketches/5SStRhKfD)<!-- 2025-04-25T14:06:43.894Z -->  
+[ims05-shane](https://editor.p5js.org/Xueyu333/sketches/R27dgt-Wo)<!-- 2025-04-25T13:43:06.622Z -->  
+[pop art](https://editor.p5js.org/Xueyu333/sketches/obaoseZPU)<!-- 2025-04-25T03:23:29.060Z -->  
+[bodySegmentation-capturebody+video](https://editor.p5js.org/Xueyu333/sketches/y_v6unHac)<!-- 2025-04-25T00:04:09.611Z -->  
+[bodySegmentation-capturebody](https://editor.p5js.org/Xueyu333/sketches/iF3n_GWl_)<!-- 2025-04-24T18:40:10.357Z -->  
+[bodySegmentation-mask-body-parts copy](https://editor.p5js.org/Xueyu333/sketches/MdNONp1b3)<!-- 2025-04-24T03:57:20.835Z -->  
+[rain copy](https://editor.p5js.org/Xueyu333/sketches/N8jHkXckQ)<!-- 2025-04-14T01:22:57.015Z -->  
+[rain](https://editor.p5js.org/Xueyu333/sketches/3F8uYSpLP)<!-- 2025-04-13T17:40:09.576Z -->  
+[ims03-shane](https://editor.p5js.org/Xueyu333/sketches/myjyAJ-Fb)<!-- 2025-04-12T19:37:52.442Z -->  
+[Blurred text copy](https://editor.p5js.org/Xueyu333/sketches/9Tawyj742)<!-- 2025-04-12T19:29:42.292Z -->  
 [ims02-shane](https://editor.p5js.org/Xueyu333/sketches/56koQQZER)<!-- 2025-04-04T13:59:44.274Z -->  
 [ims02-shane copy](https://editor.p5js.org/Xueyu333/sketches/tb_OxMmbu)<!-- 2025-04-04T00:31:36.692Z -->  
 [twist square01 -back and forth](https://editor.p5js.org/Xueyu333/sketches/D3PHob59U)<!-- 2025-03-27T18:37:29.283Z -->  
